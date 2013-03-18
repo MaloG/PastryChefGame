@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,10 +26,14 @@ public class LeaderBoard implements Serializable {
     private String name;
     private String description;
     private String application;
-    private String player;
+    private Player player;
     private String points;
     //private ranking = [String player, String points];
-        
+    
+   @OneToOne
+   @JoinColumn(name="ID")
+   public Player getPlayer() { return player; }
+    
     public Long getId() {
         return id;
     }
