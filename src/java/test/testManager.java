@@ -37,7 +37,7 @@ public class testManager implements testManagerLocal {
     @Override
     public void testBadge(){
         for (int i = 0; i < 3; i++){
-            long x = badgesManager.createBadge(names[],descs[], icons[]);
+            long x = badgesManager.createBadge(names[i],descriptions[i], icones[i]);
         }
     
     }
