@@ -31,9 +31,9 @@ public class testManager implements testManagerLocal {
     private String[] ages = {"fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf"};
     
     @Override
-    public void testBadge(String name, String desc, String icon){
-        for (int i = 0; i < 10; i++){
-            long x = badgesManager.createBadge(name,desc, icon);
+    public void testBadge(){
+        for (int i = 0; i < 3; i++){
+            long x = badgesManager.createBadge(names[],descs[], icons[]);
         }
     
     }
@@ -45,6 +45,8 @@ public class testManager implements testManagerLocal {
             System.out.println(x);
         }
     }
+    
+    
     
     
 

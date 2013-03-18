@@ -12,7 +12,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface testManagerLocal {
-    public void testBadge(String name, String desc, String icon);
+    public void testBadge();
 
     void createPlayer();
 }
