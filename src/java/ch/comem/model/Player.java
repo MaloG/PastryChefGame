@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -26,7 +27,9 @@ public class Player implements Serializable {
     private String email;
     private Integer numberOfPoints;
 
-    //private Badge; (tableau)
+    @ManyToMany
+    private Badge badges;
+    
     public String getFirstName() {
         return firstName;
     }

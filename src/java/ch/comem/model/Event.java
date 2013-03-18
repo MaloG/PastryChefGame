@@ -5,10 +5,12 @@
 package ch.comem.model;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -21,10 +23,12 @@ public class Event implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //private application;
+    @ManyToOne
+    private Application application;
+    
     private String player;
     private String type;
-    private String timestamp;
+    private Timestamp timestamp;
 
     public String getPlayer() {
         return player;
@@ -42,15 +46,14 @@ public class Event implements Serializable {
         this.type = type;
     }
 
-    public String getTimestamp() {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(String timestamp) {
+    public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
     }
-    
-    
+
     public Long getId() {
         return id;
     }

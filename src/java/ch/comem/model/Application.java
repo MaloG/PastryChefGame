@@ -5,10 +5,12 @@
 package ch.comem.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -16,6 +18,9 @@ import javax.persistence.Id;
  */
 @Entity
 public class Application implements Serializable {
+    @OneToMany(mappedBy = "application")
+    private List<Event> events;
+    
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
