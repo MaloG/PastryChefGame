@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -18,6 +19,9 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Application implements Serializable {
+    @OneToOne(mappedBy = "application")
+    private LeaderBoard leaderBoard;
+    
     @OneToMany(mappedBy = "application")
     private List<Event> events;
     

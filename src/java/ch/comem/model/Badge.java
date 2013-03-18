@@ -18,8 +18,27 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Badge implements Serializable {
+    
     @OneToMany(mappedBy = "badges")
     private List<Player> players;
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+    //ajouter un player
+    public void addPlayer(String firstName, String lastname, String email, Integer points){
+        Player player = new Player();
+        
+        player.setFirstName(firstName);
+        player.setLastName(lastname);
+        player.setEmail(email);
+        player.setNumberOfPoints(points);
+        
+    }
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

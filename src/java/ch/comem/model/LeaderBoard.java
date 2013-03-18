@@ -25,7 +25,10 @@ public class LeaderBoard implements Serializable {
 
     private String name;
     private String description;
-    private String application;
+    
+    @OneToOne
+    private Application application;
+    
     private Player player;
     private String points;
     //private ranking = [String player, String points];
