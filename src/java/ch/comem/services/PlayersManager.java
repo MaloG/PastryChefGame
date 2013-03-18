@@ -4,6 +4,7 @@
  */
 package ch.comem.services;
 
+import ch.comem.model.Badge;
 import ch.comem.model.Player;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -34,6 +35,20 @@ public class PlayersManager implements PlayersManagerLocal {
         return player.getId();
     }
 
+    @Override
+    public void addBadgeToPlayer(long badgeId, long playerId) {
+        
+        Player player = em.find(Player.class, playerId);
+        Badge badge = em.find(Badge.class, badgeId);
+        
+        player.addBadges(badge);
+        
+        em.persist(badge);
+        em.persist(player);
+        em.flush();
+        
+    }
+
     
     // Add business logic below. (Right-click in editor and choose
     // "Insert Code > Add Business Method")
@@ -42,4 +57,5 @@ public class PlayersManager implements PlayersManagerLocal {
         em.persist(object);
     }
 
+    
 }
