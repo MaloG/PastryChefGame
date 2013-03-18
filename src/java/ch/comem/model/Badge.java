@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -19,7 +19,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Badge implements Serializable {
     
-    @OneToMany(mappedBy = "badges")
+    @ManyToMany(mappedBy = "badges")
     private List<Player> players;
 
     public List<Player> getPlayers() {
@@ -30,13 +30,9 @@ public class Badge implements Serializable {
         this.players = players;
     }
     //ajouter un player
-    public void addPlayer(String firstName, String lastname, String email, Integer points){
-        Player player = new Player();
-        
-        player.setFirstName(firstName);
-        player.setLastName(lastname);
-        player.setEmail(email);
-        player.setNumberOfPoints(points);
+    public void addPlayer(Player player){
+        getPlayers().add(player);
+        player.addBadges(this);
         
     }
     private static final long serialVersionUID = 1L;

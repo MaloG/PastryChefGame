@@ -5,6 +5,7 @@
 package ch.comem.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,7 +29,19 @@ public class Player implements Serializable {
     private Integer numberOfPoints;
 
     @ManyToMany
-    private Badge badges;
+    private List<Badge> badges;
+
+    public List<Badge> getBadges() {
+        return badges;
+    }
+
+    public void setBadges(List<Badge> badges) {
+        this.badges = badges;
+    }
+
+    public void addBadges(Badge badge) {
+        getBadges().add(badge);
+    }
     
     public String getFirstName() {
         return firstName;
