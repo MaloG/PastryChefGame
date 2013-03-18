@@ -40,12 +40,13 @@ public class PlayersManager implements PlayersManagerLocal {
         
         Player player = em.find(Player.class, playerId);
         Badge badge = em.find(Badge.class, badgeId);
-        
-        player.addBadges(badge);
-        
-        em.persist(badge);
-        em.persist(player);
-        em.flush();
+        if(player != null && badge != null){
+            player.addBadges(badge);
+
+            em.persist(badge);
+            em.persist(player);
+            em.flush();
+        };
         
     }
 

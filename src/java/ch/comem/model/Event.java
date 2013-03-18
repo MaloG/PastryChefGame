@@ -30,6 +30,14 @@ public class Event implements Serializable {
     private String type;
     private Timestamp timestamp;
 
+    
+    public Application getApplication() {
+        return application;
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
+    }
     public String getPlayer() {
         return player;
     }

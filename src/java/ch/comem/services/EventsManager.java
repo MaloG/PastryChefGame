@@ -4,6 +4,9 @@
  */
 package ch.comem.services;
 
+import ch.comem.model.Application;
+import ch.comem.model.Event;
+import ch.comem.model.Player;
 import javax.ejb.Stateless;
 
 /**
@@ -13,7 +16,12 @@ import javax.ejb.Stateless;
 @Stateless
 public class EventsManager implements EventsManagerLocal {
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public long createEvent(Player player, String type, Application application, int timestamp) {
+        Event event = new Event();
+        return event.getId();
+    }
+    
+    
 
 }

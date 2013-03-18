@@ -19,13 +19,6 @@ import javax.persistence.OneToOne;
  */
 @Entity
 public class Application implements Serializable {
-    @OneToOne(mappedBy = "application")
-    private LeaderBoard leaderBoard;
-    
-    @OneToMany(mappedBy = "application")
-    private List<Event> events;
-    
-    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,6 +27,35 @@ public class Application implements Serializable {
     private String description;
     private String apiKey;
     private String apiSecret;
+    
+    @OneToOne(mappedBy = "application")
+    private LeaderBoard leaderBoard;
+    
+    @OneToMany(mappedBy = "application")
+    private List<Event> events;
+
+    
+    public LeaderBoard getLeaderBoard() {
+        return leaderBoard;
+    }
+
+    public void setLeaderBoard(LeaderBoard leaderBoard) {
+        this.leaderBoard = leaderBoard;
+    }
+
+    public List<Event> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<Event> events) {
+        this.events = events;
+    }
+    public void addEvent(Event event){
+        getEvents().add(event);
+        event.setApplication(this);
+    }
+    
+    private static final long serialVersionUID = 1L;
 
     public String getName() {
         return name;

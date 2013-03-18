@@ -4,6 +4,8 @@
  */
 package ch.comem.services;
 
+import ch.comem.model.Application;
+import ch.comem.model.Player;
 import javax.ejb.Local;
 
 /**
@@ -12,5 +14,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface EventsManagerLocal {
+
+    long createEvent(Player player, String type, Application application, int timestamp);
     
 }

@@ -34,6 +34,8 @@ public class testManager implements testManagerLocal {
     private String[] descriptions={"blablabla","blablabla","blablabla"};
     private String[] icones={"http://newbie.com","http://ap.com","http://cp.com"};
     
+    private long[] badgeLing={0,1,2,2,1,0,0,1,2,2};
+    
     @Override
     public void testBadge(){
         for (int i = 0; i < 3; i++){
@@ -47,6 +49,14 @@ public class testManager implements testManagerLocal {
         for (int index = 0; index < 10; index++) {
             long x = playersManager.createPlayer(firstNames[index], lastNames[index], ages[index], index);
             System.out.println(x);
+        }
+    }
+    
+    public void giveBadgeToPlayer(){
+//        createPlayer();
+//        testBadge();
+        for (int index = 0; index < 10; index++) {
+            playersManager.addBadgeToPlayer(badgeLing[index], (long) index);
         }
     }
     
