@@ -4,6 +4,7 @@
  */
 package ch.comem.services;
 
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -13,6 +14,6 @@ import javax.ejb.Local;
 @Local
 public interface LeaderBoardsManagerLocal {
 
-    void createLeaderBoard(String name, String description, long applicationId);
+    long createLeaderBoard(String name, String description, long applicationId, List ranking);
     
 }
