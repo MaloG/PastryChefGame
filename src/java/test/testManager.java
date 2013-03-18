@@ -30,6 +30,10 @@ public class testManager implements testManagerLocal {
                                   "Teoni", "Baertchi"};
     private String[] ages = {"fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf"};
     
+    private String[] names = {"newbie","apprenti-patissier","chef-patissier"};
+    private String[] descriptions={"blablabla","blablabla","blablabla"};
+    private String[] icones={"http://newbie.com","http://ap.com","http://cp.com"};
+    
     @Override
     public void testBadge(String name, String desc, String icon){
         for (int i = 0; i < 10; i++){
