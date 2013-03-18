@@ -7,7 +7,9 @@ package test;
 import ch.comem.services.ApplicationsManagerLocal;
 import ch.comem.services.BadgesManagerLocal;
 import ch.comem.services.EventsManagerLocal;
+import ch.comem.services.LeaderBoardsManagerLocal;
 import ch.comem.services.PlayersManagerLocal;
+import ch.comem.services.RulesManagerLocal;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
@@ -19,6 +21,10 @@ import javax.jws.WebService;
 @Stateless
 @WebService
 public class testManager implements testManagerLocal {
+    @EJB
+    private LeaderBoardsManagerLocal leaderBoardsManager;
+    @EJB
+    private RulesManagerLocal rulesManager;
     @EJB
     private ApplicationsManagerLocal applicationsManager;
     @EJB
@@ -57,6 +63,12 @@ public class testManager implements testManagerLocal {
     private String[] apiSecret = {"987654","12765432"};
     private String[] appDesc = {"pastry sharing application", "other useless application you'll never use","something else"};
     
+    //Rules
+    private String[] rules = {"5 patisserie","5 gateau","10 patisserie", "10 cupcake", "100 patisserie"};
+    private int[] points = {50,50,50,100,200};
+    private String[] badge = {"http://newbie.com","http://ap.com","http://cp.com","http://ap.com","http://cp.com"};
+    
+    
     @Override
     public void createBadge(){
         for (int i = 0; i < 3; i++){
@@ -92,9 +104,22 @@ public class testManager implements testManagerLocal {
             applicationsManager.createApplication(appName[i], appDesc[i], apiKey[i], apiSecret[i]);
         }
     }
+    
+    @Override
+    public void createRules() {
+        for(int i = 0; i < 5; i++){
+            rulesManager.createRule(rules[i], points[i], badge[i], 1);
+        }
+    }
+    
+    @Override
+    public void createLeaderBoards() {
+        leaderBoardsManager.createLeaderBoard("stuff", "long stuff", 2, null);
+    }
 
     @Override
     public void doAll() {
+        createRules();
         createBadge();
         createPlayer();
         giveBadgeToPlayer();
@@ -102,11 +127,7 @@ public class testManager implements testManagerLocal {
         createEvents();
         
     }
-    
-    
-    
-    
-    
-    
+
+  
 
 }

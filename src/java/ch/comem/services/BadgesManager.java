@@ -30,7 +30,6 @@ public class BadgesManager implements BadgesManagerLocal {
         badge.setDescription(description);
         badge.setIcon(icon);
         
-        
         em.persist(badge);
         em.flush();
         

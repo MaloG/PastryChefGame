@@ -22,4 +22,8 @@ public interface testManagerLocal {
     void createApplication();
 
     void doAll();
+
+    void createRules();
+
+    void createLeaderBoards();
 }

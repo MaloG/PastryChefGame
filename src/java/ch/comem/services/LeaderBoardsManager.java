@@ -24,12 +24,14 @@ public class LeaderBoardsManager implements LeaderBoardsManagerLocal {
         LeaderBoard leaderboard = new LeaderBoard();
         leaderboard.setName(name);
         leaderboard.setDescription(description);
-        Application application;
-        application = em.find(Application.class, applicationId);
-        
-        persist(leaderboard);
-        em.flush();
-        
+        Application application = em.find(Application.class, applicationId);
+        // add ranking for players  for(i = 0; )
+        if(application != null){
+            leaderboard.setApplication(application);
+
+            persist(leaderboard);
+            em.flush();
+        }
         return leaderboard.getId();
     }
     public void persist(Object object) {
