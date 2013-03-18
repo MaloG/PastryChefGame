@@ -23,7 +23,7 @@ public class Rule implements Serializable {
 
     private String onEventType;
     private String numberOfPoints;
-    private String badge;
+    private Badge badge;
     
     
     

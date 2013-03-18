@@ -29,10 +29,7 @@ public class LeaderBoard implements Serializable {
     private Player player;
     private String points;
     //private ranking = [String player, String points];
-    
-   @OneToOne
-   @JoinColumn(name="ID")
-   public Player getPlayer() { return player; }
+ 
     
     public Long getId() {
         return id;
