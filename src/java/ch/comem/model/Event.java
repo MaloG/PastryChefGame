@@ -26,7 +26,7 @@ public class Event implements Serializable {
     @ManyToOne
     private Application application;
     
-    private String player;
+    private Player player;
     private String type;
     private Timestamp timestamp;
 
@@ -38,11 +38,11 @@ public class Event implements Serializable {
     public void setApplication(Application application) {
         this.application = application;
     }
-    public String getPlayer() {
+    public Player getPlayer() {
         return player;
     }
 
-    public void setPlayer(String player) {
+    public void setPlayer(Player player) {
         this.player = player;
     }
 

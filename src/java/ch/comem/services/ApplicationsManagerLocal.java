@@ -12,5 +12,7 @@ import javax.ejb.Local;
  */
 @Local
 public interface ApplicationsManagerLocal {
+
+    long createApplication(String name, String description, String apiKey, String apiSecret);
     
 }
