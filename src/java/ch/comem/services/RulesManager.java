@@ -4,7 +4,10 @@
  */
 package ch.comem.services;
 
+import ch.comem.model.Rule;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -12,8 +15,27 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class RulesManager implements RulesManagerLocal {
+    @PersistenceContext(unitName = "Badge")
+    private EntityManager em;
+    
+        @Override
+        public long createRule(String onEventType, int numberOfPoints, String badge) {
+            Rule rule = new Rule();
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+            if(rule != null){
 
+                rule.setOnEventType(onEventType);
+                rule.setNumberOfPoints(numberOfPoints);
+                rule.setBadge(badge);
+
+                persist(rule);
+                em.flush();
+            }
+            return rule.getId();
+
+        }
+        public void persist(Object object) {
+            em.persist(object);
+        }
+        
 }

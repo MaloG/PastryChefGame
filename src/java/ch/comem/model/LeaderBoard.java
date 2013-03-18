@@ -5,6 +5,7 @@
 package ch.comem.model;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,11 +29,18 @@ public class LeaderBoard implements Serializable {
     
     @OneToOne
     private Application application;
-    
-    private Player player;
-    private String points;
-    //private ranking = [String player, String points];
  
+    private List ranking;
+    //private Player player;
+    //private String points;
+    
+    public List getRanking() {
+        return ranking;
+    }
+
+    public void setRanking(List ranking) {
+        this.ranking = ranking;
+    }
     
     public Long getId() {
         return id;
@@ -41,6 +49,32 @@ public class LeaderBoard implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Application getApplication() {
+        return application;
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
+    }
+    
+   
 
     @Override
     public int hashCode() {

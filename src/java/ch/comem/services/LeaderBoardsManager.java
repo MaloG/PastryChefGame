@@ -4,7 +4,11 @@
  */
 package ch.comem.services;
 
+import ch.comem.model.Application;
+import ch.comem.model.LeaderBoard;
+import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
 
 /**
  *
@@ -12,8 +16,24 @@ import javax.ejb.Stateless;
  */
 @Stateless
 public class LeaderBoardsManager implements LeaderBoardsManagerLocal {
+    private EntityManager em;
 
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    @Override
+    public long createLeaderBoard(String name, String description, long applicationId, List ranking) {
+        
+        LeaderBoard leaderboard = new LeaderBoard();
+        leaderboard.setName(name);
+        leaderboard.setDescription(description);
+        Application application;
+        application = em.find(Application.class, applicationId);
+        
+        persist(leaderboard);
+        em.flush();
+        
+        return leaderboard.getId();
+    }
+    public void persist(Object object) {
+        em.persist(object);
+    }
 
 }
