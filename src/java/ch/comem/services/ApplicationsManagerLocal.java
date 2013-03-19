@@ -5,6 +5,9 @@
 package ch.comem.services;
 
 import javax.ejb.Local;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -12,7 +15,9 @@ import javax.ejb.Local;
  */
 @Local
 public interface ApplicationsManagerLocal {
-
+    
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
     long createApplication(String name, String description, String apiKey, String apiSecret);
     
 }

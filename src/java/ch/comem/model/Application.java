@@ -13,12 +13,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Malo
  */
 @Entity
+@XmlRootElement
 public class Application implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,6 +44,7 @@ public class Application implements Serializable {
     @OneToMany
     private List<Rule> rules = new LinkedList<Rule>();
 
+    @XmlTransient
     public List<Rule> getRules() {
         return rules;
     }
@@ -54,6 +58,7 @@ public class Application implements Serializable {
         rule.setApplication(this);
     }
 
+    @XmlTransient
     public List<Player> getPlayers() {
         return players;
     }
@@ -74,6 +79,7 @@ public class Application implements Serializable {
         this.leaderBoard = leaderBoard;
     }
 
+    @XmlTransient
     public List<Event> getEvents() {
         return events;
     }

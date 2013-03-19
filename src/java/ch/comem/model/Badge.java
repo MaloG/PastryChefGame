@@ -12,12 +12,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Malo
  */
 @Entity
+@XmlRootElement
 public class Badge implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,6 +46,7 @@ public class Badge implements Serializable {
         this.rule = rule;
     }
             
+    @XmlTransient
     public List<Player> getPlayers() {
         return players;
     }

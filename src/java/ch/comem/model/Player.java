@@ -13,12 +13,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Malo
  */
 @Entity
+@XmlRootElement
 public class Player implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,6 +59,7 @@ public class Player implements Serializable {
         this.application = application;
     }
     
+    @XmlTransient
     public List<Badge> getBadges() {
         return badges;
     }
