@@ -53,7 +53,6 @@ public class Badge implements Serializable {
     //ajouter un player
     public void addPlayer(Player player){
         getPlayers().add(player);
-        player.addBadges(this);
         
     }
 

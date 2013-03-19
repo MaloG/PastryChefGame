@@ -66,7 +66,6 @@ public class Player implements Serializable {
 
     public void addBadges(Badge badge) {
         getBadges().add(badge);
-        badge.addPlayer(this);
     }
     
     public String getFirstName() {

@@ -15,6 +15,6 @@ public interface BadgesManagerLocal {
 
     void businessMethod();
     
-    long createBadge(String name, String description, String icon, long RulesId);
+    long createBadge(String name, String description, String icon);
     
 }
