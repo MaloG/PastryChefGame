@@ -5,7 +5,9 @@
 package ch.comem.services.rest;
 
 import ch.comem.model.Event;
+import ch.comem.services.EventsManagerLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,9 +27,12 @@ import javax.ws.rs.Produces;
 @Stateless
 @Path("ch.comem.model.event")
 public class EventFacadeREST extends AbstractFacade<Event> {
+    @EJB
+    private EventsManagerLocal eventsManager;
+    
     @PersistenceContext(unitName = "Badge")
     private EntityManager em;
-
+    
     public EventFacadeREST() {
         super(Event.class);
     }
@@ -63,7 +68,7 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     @Override
     @Produces({"application/xml", "application/json"})
     public List<Event> findAll() {
-        return super.findAll();
+        return eventsManager.findAll();
     }
 
     @GET

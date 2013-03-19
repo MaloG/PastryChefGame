@@ -5,14 +5,16 @@
 package ch.comem.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -34,29 +36,33 @@ public class Player implements Serializable {
     private String email;
     private Integer numberOfPoints;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Badge> badges;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Application application;
 
-    @ManyToOne
-    private Event event;
+    @OneToMany(fetch = FetchType.LAZY)
+    private List<Event> event = new LinkedList<Event>();
 
-    public Event getEvent() {
-        return event;
-    }
-
-    public void setEvent(Event event) {
-        this.event = event;
-    }
-    
     public Application getApplication() {
         return application;
     }
 
     public void setApplication(Application application) {
         this.application = application;
+    }
+
+    public List<Event> getEvent() {
+        return event;
+    }
+
+    public void setEvent(List<Event> event) {
+        this.event = event;
+    }
+    
+    public void addEvent(Event event){
+        this.event.add(event);
     }
     
     @XmlTransient

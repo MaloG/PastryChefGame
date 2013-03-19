@@ -8,6 +8,7 @@ import ch.comem.model.Application;
 import ch.comem.model.Event;
 import ch.comem.model.Player;
 import java.sql.Timestamp;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,7 +36,7 @@ public class EventsManager implements EventsManagerLocal {
             event.setTimestamp(timestamp);
             
             event.setPlayer(player);
-            player.setEvent(event);
+            player.addEvent(event);
             
             event.setApplication(application);
             application.addEvent(event);
@@ -47,6 +48,12 @@ public class EventsManager implements EventsManagerLocal {
         }
         return event.getId();
     }
+    @Override
+    public List<Event> findAll(){
+        List<Event> list;
+        list = em.createNamedQuery("findAllEvents").getResultList();
+        return list;
+    } 
 
     public void persist(Object object) {
         em.persist(object);
