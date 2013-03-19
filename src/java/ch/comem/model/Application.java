@@ -51,6 +51,7 @@ public class Application implements Serializable {
     
     public void addRule(Rule rule){
         this.rules.add(rule);
+        rule.setApplication(this);
     }
 
     public List<Player> getPlayers() {
