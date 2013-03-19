@@ -5,6 +5,7 @@
 package ch.comem.model;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -33,7 +34,36 @@ public class Application implements Serializable {
     
     @OneToMany(mappedBy = "application")
     private List<Event> events;
+    
+    @OneToMany(mappedBy = "application")
+    private List<Player> players = new LinkedList<Player>();
+    
+    @OneToMany
+    private List<Rule> rules = new LinkedList<Rule>();
 
+    public List<Rule> getRules() {
+        return rules;
+    }
+
+    public void setRules(List<Rule> rules) {
+        this.rules = rules;
+    }
+    
+    public void addRule(Rule rule){
+        this.rules.add(rule);
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<Player> players) {
+        this.players = players;
+    }
+    
+    public void addPlayers(Player player){
+        this.players.add(player);
+    }
     
     public LeaderBoard getLeaderBoard() {
         return leaderBoard;

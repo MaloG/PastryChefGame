@@ -5,12 +5,14 @@
 package ch.comem.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -18,6 +20,7 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Player implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,6 +34,28 @@ public class Player implements Serializable {
     @ManyToMany
     private List<Badge> badges;
 
+    @ManyToOne
+    private Application application;
+
+    @ManyToOne
+    private Event event;
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
+    
+    public Application getApplication() {
+        return application;
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
+    }
+    
     public List<Badge> getBadges() {
         return badges;
     }

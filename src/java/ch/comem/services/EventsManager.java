@@ -25,17 +25,23 @@ public class EventsManager implements EventsManagerLocal {
     public long createEvent(long playerId, String type, long applicationId) {
         Timestamp timestamp = new Timestamp(1000000);
         Event event = new Event();
+        
         Player player = em.find(Player.class, playerId);
         Application application = em.find(Application.class, applicationId);
         
         if(player != null && application != null){
         
-            event.setPlayer(player);
             event.setType(type);
             event.setTimestamp(timestamp);
-
+            
+            event.setPlayer(player);
+            player.setEvent(event);
+            
             event.setApplication(application);
-
+            application.addEvent(event);
+            
+            persist(player);
+            persist(application);
             persist(event);
             em.flush();
         }

@@ -28,6 +28,9 @@ public class LeaderBoard implements Serializable {
     
     private List<Integer> rankingScore;
     private List<Long> rankingPlayer;
+    
+    @OneToOne
+    private Application application;
 
     public List<Integer> getRankingScore() {
         return rankingScore;
@@ -49,21 +52,6 @@ public class LeaderBoard implements Serializable {
     }
     public void setRankingPlayer(long playerId){
         this.rankingPlayer.add(playerId);
-    }
-    
-    @OneToOne
-    private Application application;
- 
-    private List ranking;
-    //private Player player;
-    //private String points;
-    
-    public List getRanking() {
-        return ranking;
-    }
-
-    public void setRanking(List ranking) {
-        this.ranking = ranking;
     }
     
     public Long getId() {

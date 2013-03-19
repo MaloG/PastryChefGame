@@ -5,6 +5,7 @@
 package ch.comem.services;
 
 import ch.comem.model.Application;
+import ch.comem.model.Badge;
 import ch.comem.model.Rule;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -21,19 +22,26 @@ public class RulesManager implements RulesManagerLocal {
     
     
         @Override
-        public long createRule(String onEventType, int numberOfPoints, String badge, long applicationId) {
+        public long createRule(String onEventType, int numberOfPoints, long badgeId, long applicationId) {
             Rule rule = new Rule();
             
-
             rule.setOnEventType(onEventType);
             rule.setNumberOfPoints(numberOfPoints);
-            rule.setBadge(badge);
             
             Application application = em.find(Application.class, applicationId);
+            Badge badge;
+            badge = em.find(Badge.class, badgeId);
             
-            if(application != null){
-                rule.setApplication(application);
+            if(application != null && badge != null){
                 
+                rule.setApplication(application);
+                application.addRule(rule);
+                
+                rule.setBadge(badge);
+                badge.setRule(rule);
+                
+                persist(application);
+                persist(badge);
                 persist(rule);
                 em.flush();
             }

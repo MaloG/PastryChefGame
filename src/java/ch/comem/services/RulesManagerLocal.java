@@ -13,6 +13,6 @@ import javax.ejb.Local;
 @Local
 public interface RulesManagerLocal {
 
-    long createRule(String onEventType, int numberOfPoints, String badge, long applicationId);
+    long createRule(String onEventType, int numberOfPoints, long badge, long applicationId);
     
 }

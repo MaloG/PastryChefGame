@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -24,16 +25,18 @@ public class Rule implements Serializable {
 
     private String onEventType;
     private Integer numberOfPoints;
-    private String badge;
+    
+    @OneToOne
+    private Badge badge;
     
     @ManyToOne
     private Application application;
 
-    public String getBadge() {
+    public Badge getBadge() {
         return badge;
     }
 
-    public void setBadge(String badge) {
+    public void setBadge(Badge badge) {
         this.badge = badge;
     }
 

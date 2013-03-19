@@ -4,6 +4,7 @@
  */
 package ch.comem.services;
 
+import ch.comem.model.Application;
 import ch.comem.model.Badge;
 import ch.comem.model.Player;
 import javax.ejb.Stateless;
@@ -21,7 +22,7 @@ public class PlayersManager implements PlayersManagerLocal {
 
     
     @Override
-    public long createPlayer(String firstName, String lastName, String email, int numberOfPoints) {
+    public long createPlayer(String firstName, String lastName, String email, int numberOfPoints, long applicationId) {
         Player player = new Player();
         
         player.setFirstName(firstName);
@@ -29,9 +30,17 @@ public class PlayersManager implements PlayersManagerLocal {
         player.setEmail(email);
         player.setNumberOfPoints(numberOfPoints);
         
-        persist(player);
-        em.flush();
+        Application application = em.find(Application.class, applicationId);
         
+        if(application != null){
+            
+            player.setApplication(application);
+            application.addPlayers(player);
+            
+            persist(application);
+            persist(player);
+            em.flush();
+        }
         return player.getId();
     }
 
@@ -40,7 +49,9 @@ public class PlayersManager implements PlayersManagerLocal {
         
         Player player = em.find(Player.class, playerId);
         Badge badge = em.find(Badge.class, badgeId);
+        
         if(player != null && badge != null){
+            
             player.addBadges(badge);
 
             em.persist(badge);

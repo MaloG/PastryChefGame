@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -18,10 +19,30 @@ import javax.persistence.ManyToMany;
  */
 @Entity
 public class Badge implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    
+    private String name;
+    private String description;
+    private String icon;
     
     @ManyToMany(mappedBy = "badges")
     private List<Player> players;
+    
+    @OneToOne
+    private Rule rule;
 
+    public Rule getRule() {
+        return rule;
+    }
+
+    public void setRule(Rule rule) {
+        this.rule = rule;
+    }
+            
     public List<Player> getPlayers() {
         return players;
     }
@@ -35,14 +56,6 @@ public class Badge implements Serializable {
         player.addBadges(this);
         
     }
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String name;
-    private String description;
-    private String icon;
 
     public String getName() {
         return name;

@@ -5,6 +5,7 @@
 package ch.comem.services;
 
 import ch.comem.model.Badge;
+import ch.comem.model.Rule;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -22,17 +23,17 @@ public class BadgesManager implements BadgesManagerLocal {
         em.persist(object);
     }
     
-    
-    public long createBadge(String name, String description, String icon){
+    @Override
+    public long createBadge(String name, String description, String icon,long RulesId){
         Badge badge = new Badge();
        
         badge.setName(name);
         badge.setDescription(description);
         badge.setIcon(icon);
         
-        em.persist(badge);
+        persist(badge);
         em.flush();
-        
+            
         return badge.getId();
     }
 

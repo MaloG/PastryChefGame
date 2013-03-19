@@ -27,8 +27,11 @@ public class LeaderBoardsManager implements LeaderBoardsManagerLocal {
         Application application = em.find(Application.class, applicationId);
         // add ranking for players  for(i = 0; )
         if(application != null){
+            
             leaderboard.setApplication(application);
-
+            application.setLeaderBoard(leaderboard);
+            
+            persist(application);
             persist(leaderboard);
             em.flush();
         }

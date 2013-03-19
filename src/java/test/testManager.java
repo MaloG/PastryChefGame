@@ -66,13 +66,13 @@ public class testManager implements testManagerLocal {
     //Rules
     private String[] rules = {"5 patisserie","5 gateau","10 patisserie", "10 cupcake", "100 patisserie"};
     private int[] points = {50,50,50,100,200};
-    private String[] badge = {"http://newbie.com","http://ap.com","http://cp.com","http://ap.com","http://cp.com"};
+    private long[] badge = {1,2,3,1,2};
     
     
     @Override
     public void createBadge(){
         for (int i = 0; i < 3; i++){
-            long x = badgesManager.createBadge(names[i],descriptions[i], icones[i]);
+            long x = badgesManager.createBadge(names[i],descriptions[i], icones[i], 1);
         }
     
     }
@@ -80,7 +80,7 @@ public class testManager implements testManagerLocal {
     @Override
     public void createPlayer() {
         for (int index = 0; index < 10; index++) {
-            long x = playersManager.createPlayer(firstNames[index], lastNames[index], ages[index], index);
+            long x = playersManager.createPlayer(firstNames[index], lastNames[index], ages[index], index, appId[index]);
             System.out.println(x);
         }
     }
@@ -119,11 +119,11 @@ public class testManager implements testManagerLocal {
 
     @Override
     public void doAll() {
-        createRules();
+        createApplication();
         createBadge();
+        createRules();
         createPlayer();
         giveBadgeToPlayer();
-        createApplication();
         createEvents();
         
     }
