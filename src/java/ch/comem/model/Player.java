@@ -24,7 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @NamedQuery(
         name="findAllPlayers",
-        query="SELECT p FROM Event p"
+        query="SELECT p FROM Player p"
 )
 @Entity
 @XmlRootElement
