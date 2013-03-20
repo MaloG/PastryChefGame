@@ -5,7 +5,9 @@
 package ch.comem.services.rest;
 
 import ch.comem.model.LeaderBoard;
+import ch.comem.services.LeaderBoardsManagerLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +27,9 @@ import javax.ws.rs.Produces;
 @Stateless
 @Path("ch.comem.model.leaderboard")
 public class LeaderBoardFacadeREST extends AbstractFacade<LeaderBoard> {
+    @EJB
+    private LeaderBoardsManagerLocal leaderBoardsManager;
+    
     @PersistenceContext(unitName = "Badge")
     private EntityManager em;
 
@@ -63,7 +68,7 @@ public class LeaderBoardFacadeREST extends AbstractFacade<LeaderBoard> {
     @Override
     @Produces({"application/xml", "application/json"})
     public List<LeaderBoard> findAll() {
-        return super.findAll();
+        return leaderBoardsManager.findAll();
     }
 
     @GET
