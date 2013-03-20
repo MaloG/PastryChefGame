@@ -42,7 +42,7 @@ public class Player implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Application application;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany
     private List<Event> event = new LinkedList<Event>();
 
     public Application getApplication() {
@@ -52,7 +52,7 @@ public class Player implements Serializable {
     public void setApplication(Application application) {
         this.application = application;
     }
-
+    
     public List<Event> getEvent() {
         return event;
     }
@@ -65,7 +65,6 @@ public class Player implements Serializable {
         this.event.add(event);
     }
     
-    @XmlTransient
     public List<Badge> getBadges() {
         return badges;
     }

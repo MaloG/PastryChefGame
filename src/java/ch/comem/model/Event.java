@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,10 +34,10 @@ public class Event implements Serializable {
     private String type;
     private Timestamp timestamp;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Application application;
     
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     private Player player;
     
     public Application getApplication() {
@@ -46,6 +47,7 @@ public class Event implements Serializable {
     public void setApplication(Application application) {
         this.application = application;
     }
+    
     public Player getPlayer() {
         return player;
     }

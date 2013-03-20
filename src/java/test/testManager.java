@@ -68,7 +68,6 @@ public class testManager implements testManagerLocal {
     private int[] points = {50,50,50,100,200};
     private long[] badge = {1,2,3,1,2};
     
-    
     @Override
     public void createBadge(){
         for (int i = 0; i < 3; i++){
@@ -114,7 +113,7 @@ public class testManager implements testManagerLocal {
     
     @Override
     public void createLeaderBoards() {
-        leaderBoardsManager.createLeaderBoard("stuff", "long stuff", 2, null);
+        leaderBoardsManager.createLeaderBoard("stuff", "long stuff", 1);
     }
 
     @Override
@@ -125,7 +124,7 @@ public class testManager implements testManagerLocal {
         createPlayer();
         giveBadgeToPlayer();
         createEvents();
-        
+        createLeaderBoards();
     }
 
   

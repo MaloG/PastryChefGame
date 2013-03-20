@@ -33,7 +33,7 @@ public class Application implements Serializable {
     private String apiKey;
     private String apiSecret;
     
-    @OneToOne(mappedBy = "application")
+    @OneToOne
     private LeaderBoard leaderBoard;
     
     @OneToMany(mappedBy = "application", fetch = FetchType.LAZY)

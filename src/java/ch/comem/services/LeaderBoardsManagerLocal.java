@@ -14,6 +14,6 @@ import javax.ejb.Local;
 @Local
 public interface LeaderBoardsManagerLocal {
 
-    long createLeaderBoard(String name, String description, long applicationId, List ranking);
+    long createLeaderBoard(String name, String description, long applicationId);
     
 }

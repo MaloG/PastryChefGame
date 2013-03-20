@@ -41,7 +41,7 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Event entity) {
-        super.create(entity);
+        eventsManager.createEvent(entity.getId(), entity.getType(), entity.getApplication().getId());
     }
 
     @PUT
