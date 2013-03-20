@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -22,6 +23,10 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Malo
  */
+@NamedQuery(
+        name="findAllPlayers",
+        query="SELECT e FROM Player e"
+)
 @Entity
 @XmlRootElement
 public class Player implements Serializable {

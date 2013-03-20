@@ -22,6 +22,8 @@ public interface PlayersManagerLocal {
 
     public void persist(java.lang.Object object);
 
-    public List<Player> findAll();
+    List<Player> findAll();
+
+  
     
 }

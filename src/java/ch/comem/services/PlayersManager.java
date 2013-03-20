@@ -6,6 +6,7 @@ package ch.comem.services;
 
 import ch.comem.model.Application;
 import ch.comem.model.Badge;
+import ch.comem.model.Event;
 import ch.comem.model.Player;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -62,6 +63,7 @@ public class PlayersManager implements PlayersManagerLocal {
             em.flush();
         };
         
+        
     }
 
     
@@ -74,12 +76,13 @@ public class PlayersManager implements PlayersManagerLocal {
 
     @Override
     public List<Player> findAll() {
-        
-        @NamedQuery
-        
-        
-        return null;
+        List<Player> list;
+        list = em.createNamedQuery("findAllPlayers").getResultList();
+        return list;
     }
+
+    
+
 
     
 }

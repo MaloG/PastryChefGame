@@ -5,7 +5,10 @@
 package ch.comem.services.rest;
 
 import ch.comem.model.Player;
+import ch.comem.services.PlayersManager;
+import ch.comem.services.PlayersManagerLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +28,9 @@ import javax.ws.rs.Produces;
 @Stateless
 @Path("ch.comem.model.player")
 public class PlayerFacadeREST extends AbstractFacade<Player> {
+    @EJB
+    private PlayersManagerLocal playersManager;
+    
     @PersistenceContext(unitName = "Badge")
     private EntityManager em;
 
@@ -63,7 +69,8 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     @Override
     @Produces({"application/xml", "application/json"})
     public List<Player> findAll() {
-        return super.findAll();
+        return playersManager.findAll();
+        
     }
 
     @GET
