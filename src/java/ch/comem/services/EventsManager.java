@@ -36,7 +36,7 @@ public class EventsManager implements EventsManagerLocal {
             event.setTimestamp(timestamp);
             
             event.setPlayer(player);
-            player.addEvent(event);
+            player.addEvents(event);
             
             event.setApplication(application);
             application.addEvent(event);

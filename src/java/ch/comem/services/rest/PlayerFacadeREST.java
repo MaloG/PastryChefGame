@@ -4,6 +4,8 @@
  */
 package ch.comem.services.rest;
 
+import ch.comem.dto.BadgeDTO;
+import ch.comem.dto.EventDTO;
 import ch.comem.dto.PlayerDTO;
 import ch.comem.model.Player;
 import ch.comem.services.PlayersManagerLocal;
@@ -69,8 +71,6 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
          result.setFirstName(player.getFirstName());
          result.setLastName(player.getLastName());
          result.setEmail(player.getEmail());
-         result.setEvents(player.getEvent());
-         result.setBadges(player.getBadges());
 
         return result;
     }
@@ -81,13 +81,33 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
          List<PlayerDTO> results = new ArrayList<PlayerDTO>();
          List<Player> players = playersManager.findAll();
          for(int i = 0; i < players.size(); i++){
-            PlayerDTO playerResult = new PlayerDTO();
-            playerResult.setFirstName(players.get(i).getFirstName());
-            playerResult.setLastName(players.get(i).getLastName());
-            playerResult.setEmail(players.get(i).getEmail());
-            playerResult.setEvents(players.get(i).getEvents());
-            playerResult.setBadges(players.get(i).getBadges());
-            results.add(playerResult);
+            PlayerDTO playerDTO = new PlayerDTO();
+            playerDTO.setFirstName(players.get(i).getFirstName());
+            playerDTO.setLastName(players.get(i).getLastName());
+            playerDTO.setEmail(players.get(i).getEmail());
+            List<EventDTO> eventsDTO = new ArrayList<EventDTO>();
+            for(int j = 0; j < players.get(i).getEvents().size(); j++){
+                EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(players.get(i).getEvents().get(j).getId());
+                eventDTO.setTimestamp(players.get(i).getEvents().get(j).getTimestamp());
+                eventDTO.setType(players.get(i).getEvents().get(j).getType());
+                eventsDTO.add(eventDTO);
+            }
+            playerDTO.setEvents(eventsDTO);
+            
+            List<BadgeDTO> badgesDTO = new ArrayList<BadgeDTO>();
+            for(int j = 0; j < players.get(i).getBadges().size(); ){
+                BadgeDTO badgeDTO = new BadgeDTO();
+                badgeDTO.setId(players.get(i).getBadges().get(j).getId());
+                badgeDTO.setDescription(players.get(i).getBadges().get(j).getDescription());
+                badgeDTO.setIcon(players.get(i).getBadges().get(j).getIcon());
+                badgeDTO.setName(players.get(i).getBadges().get(j).getName());
+                badgeDTO.setRule(players.get(i).getBadges().get(j).getRule());
+                badgesDTO.add(badgeDTO);
+            }
+            playerDTO.setBadges(badgesDTO);
+
+            results.add(playerDTO);
          }
         return results;
     }
