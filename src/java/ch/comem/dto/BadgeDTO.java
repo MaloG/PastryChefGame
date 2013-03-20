@@ -5,19 +5,22 @@
 package ch.comem.dto;
 
 import ch.comem.model.Rule;
+import java.io.Serializable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author raphaelbaumann
  */
-public class BadgeDTO {
+@XmlRootElement
+public class BadgeDTO implements Serializable{
      private Long id;
     
     private String name;
     private String description;
     private String icon;
     // Pas de player car c'est un player qui accède à un badge et non le contraire
-    private Rule rule;
+    private RuleDTO rule;
 
     public Long getId() {
         return id;
@@ -49,15 +52,14 @@ public class BadgeDTO {
 
     public void setIcon(String icon) {
         this.icon = icon;
-    }
-
-    public Rule getRule() {
+    }  
+    
+    public RuleDTO getRule() {
         return rule;
     }
 
-    public void setRule(Rule rule) {
+    public void setRule(RuleDTO rule) {
         this.rule = rule;
     }
-    
     
 }

@@ -7,6 +7,9 @@ package ch.comem.services.rest;
 import ch.comem.dto.BadgeDTO;
 import ch.comem.dto.EventDTO;
 import ch.comem.dto.PlayerDTO;
+import ch.comem.dto.RuleDTO;
+import ch.comem.model.Badge;
+import ch.comem.model.Event;
 import ch.comem.model.Player;
 import ch.comem.services.PlayersManagerLocal;
 import java.util.ArrayList;
@@ -73,29 +76,34 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
          result.setEmail(player.getEmail());
          
          List<EventDTO> eventsDTO = new ArrayList<EventDTO>();
-         for(int i = 0; i < player.getEvents().size(); i++){
-            EventDTO eventDTO = new EventDTO();
-            eventDTO.setId(player.getEvents().get(i).getId());
-            eventDTO.setType(player.getEvents().get(i).getType());
-            eventDTO.setTimestamp(player.getEvents().get(i).getTimestamp());
+            for(Event event : player.getEvents()){
+                EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
+                eventsDTO.add(eventDTO);
+            }
+            result.setEvents(eventsDTO);
             
-            eventsDTO.add(eventDTO);
-             
-         }
-         result.setEvents(eventsDTO);
-         
-         List<BadgeDTO> badgesDTO = new ArrayList<BadgeDTO>();
-         for(int i = 0; i < player.getBadges().size(); i++){
-            BadgeDTO badgeDTO = new BadgeDTO();
-            badgeDTO.setId(player.getBadges().get(i).getId());
-            badgeDTO.setName(player.getBadges().get(i).getName());
-            badgeDTO.setDescription(player.getBadges().get(i).getDescription());
-            badgeDTO.setIcon(player.getBadges().get(i).getIcon());
-            badgeDTO.setRule(player.getBadges().get(i).getRule());
-         
-            badgesDTO.add(badgeDTO);
-         }
-         result.setBadges(badgesDTO);
+            List<BadgeDTO> badgesDTO = new ArrayList<BadgeDTO>();
+            for(Badge badge : player.getBadges()){
+                BadgeDTO badgeDTO = new BadgeDTO();
+                badgeDTO.setId(badge.getId());
+                badgeDTO.setDescription(badge.getDescription());
+                badgeDTO.setIcon(badge.getIcon());
+                badgeDTO.setName(badge.getName());
+                
+                RuleDTO ruleDTO = new RuleDTO();
+                
+                ruleDTO.setId(badge.getRule().getId());
+                ruleDTO.setNumberOfPoints(badge.getRule().getNumberOfPoints());
+                ruleDTO.setOnEventType(badge.getRule().getOnEventType());
+                
+                badgeDTO.setRule(ruleDTO);
+                
+                badgesDTO.add(badgeDTO);
+            }
+        result.setBadges(badgesDTO);
          
         return result;
     }
@@ -105,35 +113,46 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     public List<PlayerDTO> findAll() {
          List<PlayerDTO> results = new ArrayList<PlayerDTO>();
          List<Player> players = playersManager.findAll();
-         for(int i = 0; i < players.size(); i++){
+         
+         for(Player player : players){
             PlayerDTO playerDTO = new PlayerDTO();
-            playerDTO.setFirstName(players.get(i).getFirstName());
-            playerDTO.setLastName(players.get(i).getLastName());
-            playerDTO.setEmail(players.get(i).getEmail());
+            playerDTO.setFirstName(player.getFirstName());
+            playerDTO.setLastName(player.getLastName());
+            playerDTO.setEmail(player.getLastName());
+            
             List<EventDTO> eventsDTO = new ArrayList<EventDTO>();
-            for(int j = 0; j < players.get(i).getEvents().size(); j++){
+            for(Event event : player.getEvents()){
                 EventDTO eventDTO = new EventDTO();
-                eventDTO.setId(players.get(i).getEvents().get(j).getId());
-                eventDTO.setTimestamp(players.get(i).getEvents().get(j).getTimestamp());
-                eventDTO.setType(players.get(i).getEvents().get(j).getType());
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
                 eventsDTO.add(eventDTO);
             }
             playerDTO.setEvents(eventsDTO);
             
             List<BadgeDTO> badgesDTO = new ArrayList<BadgeDTO>();
-            for(int j = 0; j < players.get(i).getBadges().size(); ){
+            for(Badge badge : player.getBadges()){
                 BadgeDTO badgeDTO = new BadgeDTO();
-                badgeDTO.setId(players.get(i).getBadges().get(j).getId());
-                badgeDTO.setDescription(players.get(i).getBadges().get(j).getDescription());
-                badgeDTO.setIcon(players.get(i).getBadges().get(j).getIcon());
-                badgeDTO.setName(players.get(i).getBadges().get(j).getName());
-                badgeDTO.setRule(players.get(i).getBadges().get(j).getRule());
+                badgeDTO.setId(badge.getId());
+                badgeDTO.setDescription(badge.getDescription());
+                badgeDTO.setIcon(badge.getIcon());
+                badgeDTO.setName(badge.getName());
+                
+                RuleDTO ruleDTO = new RuleDTO();
+                
+                ruleDTO.setId(badge.getRule().getId());
+                ruleDTO.setNumberOfPoints(badge.getRule().getNumberOfPoints());
+                ruleDTO.setOnEventType(badge.getRule().getOnEventType());
+                
+                badgeDTO.setRule(ruleDTO);
+                
                 badgesDTO.add(badgeDTO);
             }
             playerDTO.setBadges(badgesDTO);
-
+            
             results.add(playerDTO);
          }
+         
         return results;
     }
 
