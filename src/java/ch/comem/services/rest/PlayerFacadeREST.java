@@ -68,9 +68,9 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
          Player player = super.find(id);
          result.setFirstName(player.getFirstName());
          result.setLastName(player.getLastName());
-         result.setBadges(player.getBadges());
          result.setEmail(player.getEmail());
          result.setEvents(player.getEvent());
+         result.setBadges(player.getBadges());
 
         return result;
     }
@@ -84,9 +84,9 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
             PlayerDTO playerResult = new PlayerDTO();
             playerResult.setFirstName(players.get(i).getFirstName());
             playerResult.setLastName(players.get(i).getLastName());
-            playerResult.setBadges(players.get(i).getBadges());
             playerResult.setEmail(players.get(i).getEmail());
             playerResult.setEvents(players.get(i).getEvents());
+            playerResult.setBadges(players.get(i).getBadges());
             results.add(playerResult);
          }
         return results;
