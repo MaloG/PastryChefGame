@@ -7,6 +7,7 @@ package ch.comem.services;
 import ch.comem.model.Application;
 import ch.comem.model.Badge;
 import ch.comem.model.Rule;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -51,5 +52,12 @@ public class RulesManager implements RulesManagerLocal {
         public void persist(Object object) {
             em.persist(object);
         }
+
+    @Override
+    public List<Rule> findAll() {
+        List<Rule> list;
+        list=em.createNamedQuery("findAllRules").getResultList();
+        return list;
+    }
         
 }
