@@ -4,8 +4,16 @@
  */
 package ch.comem.services.rest;
 
+import ch.comem.dto.ApplicationDTO;
+import ch.comem.dto.EventDTO;
+import ch.comem.dto.PlayerDTO;
+import ch.comem.dto.RuleDTO;
 import ch.comem.model.Application;
+import ch.comem.model.Event;
+import ch.comem.model.Player;
+import ch.comem.model.Rule;
 import ch.comem.services.ApplicationsManagerLocal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -61,14 +69,96 @@ public class ApplicationFacadeREST extends AbstractFacade<Application> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Application find(@PathParam("id") Long id) {
-        return super.find(id);
+    public ApplicationDTO find(@PathParam("id") Long id) {
+        
+        Application application =  super.find(id);
+        ApplicationDTO applicationDTO = new ApplicationDTO();
+            applicationDTO.setId(application.getId());
+            applicationDTO.setName(application.getName());
+            applicationDTO.setDescription(application.getDescription());
+            applicationDTO.setApiKey(application.getApiKey());
+            applicationDTO.setApiSecret(application.getApiSecret());
+            
+            List<EventDTO> eventsDTO = new ArrayList<EventDTO>();
+            for(Event event : application.getEvents()){
+                EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
+                eventsDTO.add(eventDTO);
+            }
+            applicationDTO.setEvents(eventsDTO);
+            
+            List<PlayerDTO> playersDTO = new ArrayList<PlayerDTO>();
+            for(Player player : application.getPlayers()){
+                PlayerDTO playerDTO = new PlayerDTO();
+                playerDTO.setFirstName(player.getFirstName());
+                playerDTO.setLastName(player.getLastName());
+                playerDTO.setEmail(player.getLastName());
+                playersDTO.add(playerDTO);
+            }
+            applicationDTO.setPlayers(playersDTO);
+            
+            List<RuleDTO> rulesDTO = new ArrayList<RuleDTO>();
+            for(Rule rule : application.getRules()){
+                RuleDTO ruleDTO = new RuleDTO();
+                ruleDTO.setId(rule.getId());
+                ruleDTO.setOnEventType(rule.getOnEventType());
+                ruleDTO.setNumberOfPoints(rule.getNumberOfPoints());
+                rulesDTO.add(ruleDTO);
+            }
+            applicationDTO.setRules(rulesDTO);
+            
+        return applicationDTO;
     }
 
     @GET
     @Produces({"application/xml", "application/json"})
-    public List<Application> findAll() {
-        return applicationsManager.findAll();
+    public List<ApplicationDTO> findAll() {
+        List<ApplicationDTO> applicationsDTO = new ArrayList<ApplicationDTO>();
+        List<Application> applications = applicationsManager.findAll();
+        
+        for(Application application: applications ){
+            ApplicationDTO applicationDTO = new ApplicationDTO();
+            applicationDTO.setId(application.getId());
+            applicationDTO.setName(application.getName());
+            applicationDTO.setDescription(application.getDescription());
+            applicationDTO.setApiKey(application.getApiKey());
+            applicationDTO.setApiSecret(application.getApiSecret());
+            
+            List<EventDTO> eventsDTO = new ArrayList<EventDTO>();
+            for(Event event : application.getEvents()){
+                EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
+                eventsDTO.add(eventDTO);
+            }
+            applicationDTO.setEvents(eventsDTO);
+            
+            List<PlayerDTO> playersDTO = new ArrayList<PlayerDTO>();
+            for(Player player : application.getPlayers()){
+                PlayerDTO playerDTO = new PlayerDTO();
+                playerDTO.setFirstName(player.getFirstName());
+                playerDTO.setLastName(player.getLastName());
+                playerDTO.setEmail(player.getLastName());
+                playersDTO.add(playerDTO);
+            }
+            applicationDTO.setPlayers(playersDTO);
+            
+            List<RuleDTO> rulesDTO = new ArrayList<RuleDTO>();
+            for(Rule rule : application.getRules()){
+                RuleDTO ruleDTO = new RuleDTO();
+                ruleDTO.setId(rule.getId());
+                ruleDTO.setOnEventType(rule.getOnEventType());
+                ruleDTO.setNumberOfPoints(rule.getNumberOfPoints());
+                rulesDTO.add(ruleDTO);
+            }
+            applicationDTO.setRules(rulesDTO);
+            
+            applicationsDTO.add(applicationDTO);
+        }
+        return applicationsDTO;
     }
 
     @GET

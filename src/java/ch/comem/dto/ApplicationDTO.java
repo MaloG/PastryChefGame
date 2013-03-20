@@ -24,10 +24,34 @@ public class ApplicationDTO {
     private String apiKey;
     private String apiSecret;
     
-    private List<Player> players = new LinkedList<Player>();
-    private List<Event> events = new LinkedList<Event>();
-    private List<Rule> rules = new LinkedList<Rule>();
+    private List<PlayerDTO> players = new LinkedList<PlayerDTO>();
+    private List<EventDTO> events = new LinkedList<EventDTO>();
+    private List<RuleDTO> rules = new LinkedList<RuleDTO>();
     private LeaderBoard leaderBoard;
+
+    public List<PlayerDTO> getPlayers() {
+        return players;
+    }
+
+    public void setPlayers(List<PlayerDTO> players) {
+        this.players = players;
+    }
+
+    public List<EventDTO> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<EventDTO> events) {
+        this.events = events;
+    }
+
+    public List<RuleDTO> getRules() {
+        return rules;
+    }
+
+    public void setRules(List<RuleDTO> rules) {
+        this.rules = rules;
+    }
 
     public Long getId() {
         return id;
@@ -67,30 +91,6 @@ public class ApplicationDTO {
 
     public void setApiSecret(String apiSecret) {
         this.apiSecret = apiSecret;
-    }
-
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public void setPlayers(List<Player> players) {
-        this.players = players;
-    }
-
-    public List<Event> getEvents() {
-        return events;
-    }
-
-    public void setEvents(List<Event> events) {
-        this.events = events;
-    }
-
-    public List<Rule> getRules() {
-        return rules;
-    }
-
-    public void setRules(List<Rule> rules) {
-        this.rules = rules;
     }
 
     public LeaderBoard getLeaderBoard() {

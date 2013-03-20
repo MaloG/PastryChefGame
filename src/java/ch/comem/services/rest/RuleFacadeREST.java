@@ -65,12 +65,13 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
     @Produces({"application/xml", "application/json"})
     public RuleDTO find(@PathParam("id") Long id) {
         
-        RuleDTO result = new RuleDTO();
+        RuleDTO ruleDTO = new RuleDTO();
         Rule rule = super.find(id);
-        result.setNumberOfPoints(rule.getNumberOfPoints());
-        result.setOnEventType(rule.getOnEventType());
+        ruleDTO.setId(rule.getId());
+        ruleDTO.setNumberOfPoints(rule.getNumberOfPoints());
+        ruleDTO.setOnEventType(rule.getOnEventType());
 
-        return result;
+        return ruleDTO;
     }
 
     @GET
@@ -81,6 +82,7 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
         
         for(Rule rule : rules){
             RuleDTO ruleDTO = new RuleDTO();
+            ruleDTO.setId(rule.getId());
             ruleDTO.setOnEventType(rule.getOnEventType());
             ruleDTO.setNumberOfPoints(rule.getNumberOfPoints());
    

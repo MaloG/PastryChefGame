@@ -69,11 +69,12 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     @Produces({"application/xml", "application/json"})
     public PlayerDTO find(@PathParam("id") Long id) {
 
-         PlayerDTO result = new PlayerDTO();
+         PlayerDTO playerDTO = new PlayerDTO();
          Player player = super.find(id);
-         result.setFirstName(player.getFirstName());
-         result.setLastName(player.getLastName());
-         result.setEmail(player.getEmail());
+         playerDTO.setId(player.getId());
+         playerDTO.setFirstName(player.getFirstName());
+         playerDTO.setLastName(player.getLastName());
+         playerDTO.setEmail(player.getEmail());
          
          List<EventDTO> eventsDTO = new ArrayList<EventDTO>();
             for(Event event : player.getEvents()){
@@ -83,7 +84,7 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
                 eventDTO.setType(event.getType());
                 eventsDTO.add(eventDTO);
             }
-            result.setEvents(eventsDTO);
+            playerDTO.setEvents(eventsDTO);
             
             List<BadgeDTO> badgesDTO = new ArrayList<BadgeDTO>();
             for(Badge badge : player.getBadges()){
@@ -103,9 +104,9 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
                 
                 badgesDTO.add(badgeDTO);
             }
-        result.setBadges(badgesDTO);
+        playerDTO.setBadges(badgesDTO);
          
-        return result;
+        return playerDTO;
     }
 
     @GET
@@ -116,6 +117,7 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
          
          for(Player player : players){
             PlayerDTO playerDTO = new PlayerDTO();
+            playerDTO.setId(player.getId());
             playerDTO.setFirstName(player.getFirstName());
             playerDTO.setLastName(player.getLastName());
             playerDTO.setEmail(player.getLastName());

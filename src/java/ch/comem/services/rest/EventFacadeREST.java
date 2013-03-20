@@ -4,8 +4,10 @@
  */
 package ch.comem.services.rest;
 
+import ch.comem.dto.EventDTO;
 import ch.comem.model.Event;
 import ch.comem.services.EventsManagerLocal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -60,14 +62,31 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Event find(@PathParam("id") Long id) {
-        return super.find(id);
+    public EventDTO find(@PathParam("id") Long id) {
+        Event event = super.find(id);
+        EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
+                
+        return eventDTO;
     }
 
     @GET
     @Produces({"application/xml", "application/json"})
-    public List<Event> findAll() {
-        return eventsManager.findAll();
+    public List<EventDTO> findAll() {
+        
+        List<Event> events = eventsManager.findAll();
+        List<EventDTO> eventsDTO = new ArrayList<EventDTO>();
+            for(Event event : events){
+                EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
+                eventsDTO.add(eventDTO);
+            }
+            
+        return eventsDTO;
     }
 
     @GET

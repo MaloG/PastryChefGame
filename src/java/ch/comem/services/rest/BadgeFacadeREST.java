@@ -64,14 +64,15 @@ public class BadgeFacadeREST extends AbstractFacade<Badge> {
     @Produces({"application/xml", "application/json"})
     public BadgeDTO find(@PathParam("id") Long id) {
         
-        BadgeDTO result = new BadgeDTO();
+        BadgeDTO badgeDTO = new BadgeDTO();
         Badge badge = super.find(id);
-        result.setName(badge.getName());
-        result.setDescription(badge.getDescription());
-        result.setIcon(badge.getIcon());
+        badgeDTO.setId(badge.getId());
+        badgeDTO.setName(badge.getName());
+        badgeDTO.setDescription(badge.getDescription());
+        badgeDTO.setIcon(badge.getIcon());
         //result.setRule(badge.getRule());
         
-        return result;
+        return badgeDTO;
     }
 
     @GET
@@ -83,6 +84,7 @@ public class BadgeFacadeREST extends AbstractFacade<Badge> {
         for(Badge badge : badges){
         
             BadgeDTO badgeDTO = new BadgeDTO();
+            badgeDTO.setId(badge.getId());
             badgeDTO.setName(badge.getName());
             badgeDTO.setDescription(badge.getDescription());
             badgeDTO.setIcon(badge.getIcon());

@@ -64,12 +64,13 @@ public class LeaderBoardFacadeREST extends AbstractFacade<LeaderBoard> {
     @Produces({"application/xml", "application/json"})
     public LeaderBoardDTO find(@PathParam("id") Long id) {
         
-        LeaderBoardDTO result = new LeaderBoardDTO();
+        LeaderBoardDTO leaderBoardDTO = new LeaderBoardDTO();
         LeaderBoard leaderboard = super.find(id);
-        result.setName(leaderboard.getName());
-        result.setDescription(leaderboard.getDescription());
+        leaderBoardDTO.setId(leaderboard.getId());
+        leaderBoardDTO.setName(leaderboard.getName());
+        leaderBoardDTO.setDescription(leaderboard.getDescription());
         
-        return result;
+        return leaderBoardDTO;
     }
 
     @GET
@@ -80,6 +81,7 @@ public class LeaderBoardFacadeREST extends AbstractFacade<LeaderBoard> {
         
         for(LeaderBoard leaderBoard : leaderBoards){
             LeaderBoardDTO leaderBoardDTO = new LeaderBoardDTO();
+            leaderBoardDTO.setId(leaderBoard.getId());
             leaderBoardDTO.setName(leaderBoard.getName());
             leaderBoardDTO.setDescription(leaderBoard.getDescription());
             
