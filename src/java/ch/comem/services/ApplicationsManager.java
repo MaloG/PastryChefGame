@@ -5,6 +5,7 @@
 package ch.comem.services;
 
 import ch.comem.model.Application;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,6 +36,13 @@ public class ApplicationsManager implements ApplicationsManagerLocal {
 
     public void persist(Object object) {
         em.persist(object);
+    }
+
+    @Override
+    public List<Application> findAll() {
+        List<Application> applications;
+        applications = em.createNamedQuery("findAllApplications").getResultList();
+        return applications;
     }
 
     
