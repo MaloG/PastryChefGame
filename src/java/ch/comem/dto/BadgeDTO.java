@@ -17,7 +17,8 @@ public class BadgeDTO {
     private String description;
     private String icon;
     // Pas de player car c'est un player qui accède à un badge et non le contraire
-    private Rule rule;
+    private RuleDTO ruleDTO;
+    private RuleDTO rule;
 
     public Long getId() {
         return id;
@@ -51,12 +52,12 @@ public class BadgeDTO {
         this.icon = icon;
     }
 
-    public Rule getRule() {
-        return rule;
+    public RuleDTO getRuleDTO() {
+        return ruleDTO;
     }
 
-    public void setRule(Rule rule) {
-        this.rule = rule;
+    public void setRuleDTO(RuleDTO ruleDTO) {
+        this.ruleDTO = rule;
     }
     
     
