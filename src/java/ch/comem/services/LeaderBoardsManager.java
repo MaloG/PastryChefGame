@@ -44,4 +44,12 @@ public class LeaderBoardsManager implements LeaderBoardsManagerLocal {
         em.persist(object);
     }
 
+    @Override
+    public List<LeaderBoard> findAll() {
+        List<LeaderBoard> leaderBoard;
+        leaderBoard = em.createNamedQuery("findAllLeaderBoards").getResultList();
+        return leaderBoard;
+    }
+    
+
 }

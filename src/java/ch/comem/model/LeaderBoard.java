@@ -11,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -18,6 +19,10 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Malo
  */
+@NamedQuery(
+    name="findAllLeaderBoards",
+    query="SELECT l FROM LeaderBoard l"
+)
 @Entity
 @XmlRootElement
 public class LeaderBoard implements Serializable {
