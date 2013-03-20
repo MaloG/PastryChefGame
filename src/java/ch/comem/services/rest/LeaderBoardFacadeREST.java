@@ -4,8 +4,10 @@
  */
 package ch.comem.services.rest;
 
+import ch.comem.dto.LeaderBoardDTO;
 import ch.comem.model.LeaderBoard;
 import ch.comem.services.LeaderBoardsManagerLocal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -60,14 +62,31 @@ public class LeaderBoardFacadeREST extends AbstractFacade<LeaderBoard> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public LeaderBoard find(@PathParam("id") Long id) {
-        return super.find(id);
+    public LeaderBoardDTO find(@PathParam("id") Long id) {
+        
+        LeaderBoardDTO result = new LeaderBoardDTO();
+        LeaderBoard leaderboard = super.find(id);
+        result.setName(leaderboard.getName());
+        result.setDescription(leaderboard.getDescription());
+        
+        return result;
     }
 
     @GET
     @Produces({"application/xml", "application/json"})
-    public List<LeaderBoard> findAll() {
-        return leaderBoardsManager.findAll();
+    public List<LeaderBoardDTO> findAll() {
+        List<LeaderBoardDTO> results = new ArrayList<LeaderBoardDTO>();
+        List<LeaderBoard> leaderBoards = leaderBoardsManager.findAll();
+        
+        for(LeaderBoard leaderBoard : leaderBoards){
+            LeaderBoardDTO leaderBoardDTO = new LeaderBoardDTO();
+            leaderBoardDTO.setName(leaderBoard.getName());
+            leaderBoardDTO.setDescription(leaderBoard.getDescription());
+            
+            results.add(leaderBoardDTO);
+        }
+        
+        return results;
     }
 
     @GET

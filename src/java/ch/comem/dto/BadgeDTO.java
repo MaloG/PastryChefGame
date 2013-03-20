@@ -54,12 +54,12 @@ public class BadgeDTO implements Serializable{
         this.icon = icon;
     }
 
-    public RuleDTO getRuleDTO() {
-        return ruleDTO;
+    public RuleDTO getRule() {
+        return rule;
     }
 
-    public void setRuleDTO(RuleDTO ruleDTO) {
-        this.ruleDTO = rule;
+    public void setRule(RuleDTO rule) {
+        this.rule = rule;
     }
     
 }

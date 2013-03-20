@@ -4,8 +4,10 @@
  */
 package ch.comem.services.rest;
 
+import ch.comem.dto.BadgeDTO;
 import ch.comem.model.Badge;
 import ch.comem.services.BadgesManagerLocal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -60,14 +62,35 @@ public class BadgeFacadeREST extends AbstractFacade<Badge> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Badge find(@PathParam("id") Long id) {
-        return super.find(id);
+    public BadgeDTO find(@PathParam("id") Long id) {
+        
+        BadgeDTO result = new BadgeDTO();
+        Badge badge = super.find(id);
+        result.setName(badge.getName());
+        result.setDescription(badge.getDescription());
+        result.setIcon(badge.getIcon());
+        //result.setRule(badge.getRule());
+        
+        return result;
     }
 
     @GET
     @Produces({"application/xml", "application/json"})
-    public List<Badge> findAll() {
-        return badgesManager.findAll();
+    public List<BadgeDTO> findAll() {
+        List<BadgeDTO> results = new ArrayList<BadgeDTO>();
+        List<Badge> badges = badgesManager.findAll();
+        
+        for(Badge badge : badges){
+        
+            BadgeDTO badgeDTO = new BadgeDTO();
+            badgeDTO.setName(badge.getName());
+            badgeDTO.setDescription(badge.getDescription());
+            badgeDTO.setIcon(badge.getIcon());
+            //badgeDTO.setRule(badge.getRule());
+            
+            results.add(badgeDTO);
+        }
+        return results;
     }
 
     @GET

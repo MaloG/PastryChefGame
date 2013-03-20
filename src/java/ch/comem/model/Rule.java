@@ -22,7 +22,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @NamedQuery(
     name="findAllRules",
-    query="SELECT e FROM Rule e"
+    query="SELECT r FROM Rule r"
 )
 
 @Entity

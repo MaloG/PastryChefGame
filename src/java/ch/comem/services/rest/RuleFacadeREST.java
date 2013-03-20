@@ -4,8 +4,10 @@
  */
 package ch.comem.services.rest;
 
+import ch.comem.dto.RuleDTO;
 import ch.comem.model.Rule;
 import ch.comem.services.RulesManagerLocal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -61,14 +63,30 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Rule find(@PathParam("id") Long id) {
-        return super.find(id);
+    public RuleDTO find(@PathParam("id") Long id) {
+        
+        RuleDTO result = new RuleDTO();
+        Rule rule = super.find(id);
+        result.setNumberOfPoints(rule.getNumberOfPoints());
+        result.setOnEventType(rule.getOnEventType());
+
+        return result;
     }
 
     @GET
     @Produces({"application/xml", "application/json"})
-    public List<Rule> findAll() {
-        return rulesManager.findAll();
+    public List<RuleDTO> findAll() {
+        List<RuleDTO> results = new ArrayList<RuleDTO>();
+        List<Rule> rules = rulesManager.findAll();
+        
+        for(Rule rule : rules){
+            RuleDTO ruleDTO = new RuleDTO();
+            ruleDTO.setOnEventType(rule.getOnEventType());
+            ruleDTO.setNumberOfPoints(rule.getNumberOfPoints());
+   
+            results.add(ruleDTO);
+        }     
+        return results;
     }
 
     @GET
