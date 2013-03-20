@@ -18,6 +18,15 @@ public class PlayerDTO implements Serializable {
     private Integer numberOfPoints;
     private List<BadgeDTO> badges;
     private List<EventDTO> events;
+    private ApplicationDTO application;
+
+    public ApplicationDTO getApplication() {
+        return application;
+    }
+
+    public void setApplication(ApplicationDTO application) {
+        this.application = application;
+    }
 
     
     public Long getId() {
