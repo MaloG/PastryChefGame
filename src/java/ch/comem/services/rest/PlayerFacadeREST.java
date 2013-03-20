@@ -4,8 +4,10 @@
  */
 package ch.comem.services.rest;
 
+import ch.comem.dto.PlayerDTO;
 import ch.comem.model.Player;
 import ch.comem.services.PlayersManagerLocal;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
@@ -60,15 +62,41 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     @GET
     @Path("{id}")
     @Produces({"application/xml", "application/json"})
-    public Player find(@PathParam("id") Long id) {
-        return super.find(id);
+    public PlayerDTO find(@PathParam("id") Long id) {
+
+         PlayerDTO result = new PlayerDTO();
+         Player player = super.find(id);
+         result.setFirstName(player.getFirstName());
+         result.setLastName(player.getLastName());
+         result.setBadges(player.getBadges());
+         result.setEmail(player.getEmail());
+         result.setEvenements(player.getEvent());
+
+        return result;
     }
 
     @GET
     @Override
     @Produces({"application/xml", "application/json"})
     public List<Player> findAll() {
-        return playersManager.findAll();
+         List<PlayerDTO> results = new ArrayList<PlayerDTO>();
+         List<Player> players = super.findAll();
+         for(int i = 0; i < players.size(); i++){
+            Player playerResult = new Player();
+//            playerResult.setFirstName(players[i].getFirstName());
+//            playerResult.setLastName(players[i].getLastName());
+//            playerResult.setBadges(players[i].getBadges());
+//            playerResult.setEmail(players[i].getEmail());
+//            playerResult.setEvenements(players[i].getEvent());
+            players.add(playerResult);
+         }
+//         PlayerDTO playerDTO = new PlayerDTO();
+//         result.setFirstName(player.getFirstName());
+//         result.setLastName(player.getLastName());
+//         result.setBadges(player.getBadges());
+//         result.setEmail(player.getEmail());
+//         result.setEvenements(player.getEvent());
+        return players;
     }
 
     @GET
