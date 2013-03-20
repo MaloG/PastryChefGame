@@ -71,9 +71,6 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
          result.setFirstName(player.getFirstName());
          result.setLastName(player.getLastName());
          result.setEmail(player.getEmail());
-<<<<<<< HEAD
-
-=======
          
          List<EventDTO> eventsDTO = new ArrayList<EventDTO>();
          for(int i = 0; i < player.getEvents().size(); i++){
@@ -86,7 +83,6 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
              
          }
          result.setEvents(eventsDTO);
-         
          
          List<BadgeDTO> badgesDTO = new ArrayList<BadgeDTO>();
          for(int i = 0; i < player.getBadges().size(); i++){
@@ -101,7 +97,6 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
          }
          result.setBadges(badgesDTO);
          
->>>>>>> branch 'master' of github.com:MaloG/PastryChefGame.git
         return result;
     }
 
