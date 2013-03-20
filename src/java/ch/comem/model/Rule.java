@@ -6,6 +6,7 @@ package ch.comem.model;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +32,7 @@ public class Rule implements Serializable {
     @OneToOne
     private Badge badge;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Application application;
 
     public Badge getBadge() {
