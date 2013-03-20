@@ -70,33 +70,26 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
          result.setLastName(player.getLastName());
          result.setBadges(player.getBadges());
          result.setEmail(player.getEmail());
-         result.setEvenements(player.getEvent());
+         result.setEvents(player.getEvent());
 
         return result;
     }
 
     @GET
-    @Override
     @Produces({"application/xml", "application/json"})
-    public List<Player> findAll() {
+    public List<PlayerDTO> findAll() {
          List<PlayerDTO> results = new ArrayList<PlayerDTO>();
-         List<Player> players = super.findAll();
+         List<Player> players = playersManager.findAll();
          for(int i = 0; i < players.size(); i++){
-            Player playerResult = new Player();
-//            playerResult.setFirstName(players[i].getFirstName());
-//            playerResult.setLastName(players[i].getLastName());
-//            playerResult.setBadges(players[i].getBadges());
-//            playerResult.setEmail(players[i].getEmail());
-//            playerResult.setEvenements(players[i].getEvent());
-            players.add(playerResult);
+            PlayerDTO playerResult = new PlayerDTO();
+            playerResult.setFirstName(players.get(i).getFirstName());
+            playerResult.setLastName(players.get(i).getLastName());
+            playerResult.setBadges(players.get(i).getBadges());
+            playerResult.setEmail(players.get(i).getEmail());
+            playerResult.setEvents(players.get(i).getEvents());
+            results.add(playerResult);
          }
-//         PlayerDTO playerDTO = new PlayerDTO();
-//         result.setFirstName(player.getFirstName());
-//         result.setLastName(player.getLastName());
-//         result.setBadges(player.getBadges());
-//         result.setEmail(player.getEmail());
-//         result.setEvenements(player.getEvent());
-        return players;
+        return results;
     }
 
     @GET

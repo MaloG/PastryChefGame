@@ -65,7 +65,6 @@ public class LeaderBoardFacadeREST extends AbstractFacade<LeaderBoard> {
     }
 
     @GET
-    @Override
     @Produces({"application/xml", "application/json"})
     public List<LeaderBoard> findAll() {
         return leaderBoardsManager.findAll();

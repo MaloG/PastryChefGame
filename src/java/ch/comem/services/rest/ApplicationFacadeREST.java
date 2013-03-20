@@ -66,7 +66,6 @@ public class ApplicationFacadeREST extends AbstractFacade<Application> {
     }
 
     @GET
-    @Override
     @Produces({"application/xml", "application/json"})
     public List<Application> findAll() {
         return applicationsManager.findAll();

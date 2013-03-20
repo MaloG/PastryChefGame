@@ -10,27 +10,36 @@ import java.util.List;
  */
 public class PlayerDTO {
     
+    private Long Id;
+
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
     private String firstName;
     private String lastName;
     private String email;
     private Integer numberOfPoints;
-    private List<Badge> badges;
-    private List<Event> evenements;
+    private List<BadgeDTO> badges;
+    private List<EventDTO> events;
 
-    public List<Event> getEvenements() {
-        return evenements;
-    }
-
-    public void setEvenements(List<Event> evenements) {
-        this.evenements = evenements;
-    }
-
-    public List<Badge> getBadges() {
+    public List<BadgeDTO> getBadges() {
         return badges;
     }
 
-    public void setBadges(List<Badge> badges) {
+    public void setBadges(List<BadgeDTO> badges) {
         this.badges = badges;
+    }
+
+    public List<EventDTO> getEvents() {
+        return events;
+    }
+
+    public void setEvents(List<EventDTO> events) {
+        this.events = events;
     }
 
     public String getFirstName() {

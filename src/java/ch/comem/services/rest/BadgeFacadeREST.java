@@ -65,7 +65,6 @@ public class BadgeFacadeREST extends AbstractFacade<Badge> {
     }
 
     @GET
-    @Override
     @Produces({"application/xml", "application/json"})
     public List<Badge> findAll() {
         return badgesManager.findAll();

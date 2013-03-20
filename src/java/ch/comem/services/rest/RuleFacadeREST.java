@@ -66,7 +66,6 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
     }
 
     @GET
-    @Override
     @Produces({"application/xml", "application/json"})
     public List<Rule> findAll() {
         return rulesManager.findAll();

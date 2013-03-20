@@ -65,7 +65,6 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     }
 
     @GET
-    @Override
     @Produces({"application/xml", "application/json"})
     public List<Event> findAll() {
         return eventsManager.findAll();

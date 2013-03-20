@@ -17,7 +17,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -48,7 +47,7 @@ public class Player implements Serializable {
     private Application application;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<Event> event = new LinkedList<Event>();
+    private List<Event> events = new LinkedList<Event>();
 
     public Application getApplication() {
         return application;
@@ -58,16 +57,16 @@ public class Player implements Serializable {
         this.application = application;
     }
 
-    public List<Event> getEvent() {
-        return event;
+    public List<Event> getEvents() {
+        return events;
     }
 
-    public void setEvent(List<Event> event) {
-        this.event = event;
+    public void setEvents(List<Event> events) {
+        this.events = events;
     }
     
-    public void addEvent(Event event){
-        this.event.add(event);
+    public void addEvents(Event event){
+        this.events.add(event);
     }
 
     public List<Badge> getBadges() {
