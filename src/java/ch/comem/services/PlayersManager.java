@@ -6,10 +6,12 @@ package ch.comem.services;
 
 import ch.comem.model.Application;
 import ch.comem.model.Badge;
+import ch.comem.model.Event;
 import ch.comem.model.Player;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.NamedQuery;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -44,6 +46,7 @@ public class PlayersManager implements PlayersManagerLocal {
         }
         return player.getId();
     }
+    
 
     @Override
     public void addBadgeToPlayer(long badgeId, long playerId) {
@@ -59,6 +62,7 @@ public class PlayersManager implements PlayersManagerLocal {
             em.persist(player);
             em.flush();
         };
+        
         
     }
 
