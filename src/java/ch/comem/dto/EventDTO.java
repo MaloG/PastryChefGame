@@ -4,13 +4,16 @@
  */
 package ch.comem.dto;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author Malo
  */
-public class EventDTO {
+@XmlRootElement
+public class EventDTO implements Serializable{
     
     private Long id;
     private String type;

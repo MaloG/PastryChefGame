@@ -1,24 +1,17 @@
 package ch.comem.dto;
 
-import ch.comem.model.Badge;
-import ch.comem.model.Event;
+import java.io.Serializable;
 import java.util.List;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author raphaelbaumann
  */
-public class PlayerDTO {
+@XmlRootElement
+public class PlayerDTO implements Serializable {
     
     private Long Id;
-
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long Id) {
-        this.Id = Id;
-    }
     private String firstName;
     private String lastName;
     private String email;
@@ -26,6 +19,15 @@ public class PlayerDTO {
     private List<BadgeDTO> badges;
     private List<EventDTO> events;
 
+    
+    public Long getId() {
+        return Id;
+    }
+
+    public void setId(Long Id) {
+        this.Id = Id;
+    }
+    
     public List<BadgeDTO> getBadges() {
         return badges;
     }

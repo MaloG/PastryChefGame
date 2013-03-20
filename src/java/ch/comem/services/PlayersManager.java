@@ -40,7 +40,6 @@ public class PlayersManager implements PlayersManagerLocal {
             player.setApplication(application);
             application.addPlayers(player);
             
-            persist(application);
             persist(player);
             em.flush();
         }
@@ -57,19 +56,15 @@ public class PlayersManager implements PlayersManagerLocal {
         if(player != null && badge != null){
             
             player.addBadges(badge);
+            badge.addPlayer(player);
 
-            em.persist(badge);
-            em.persist(player);
-            em.flush();
-        };
+
+        }
         
         
     }
 
-    
-    // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
-
+    @Override
     public void persist(Object object) {
         em.persist(object);
     }
