@@ -47,8 +47,8 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     @POST
     @Override
     @Consumes({"application/xml", "application/json"})
-    public void create(Player entity) {
-        super.create(entity);
+    public void create(Player player) {
+        playersManager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getNumberOfPoints(), player.getApplication().getId());
     }
 
     @PUT

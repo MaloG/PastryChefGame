@@ -34,7 +34,6 @@ public class LeaderBoardsManager implements LeaderBoardsManagerLocal {
             leaderboard.setApplication(application);
             application.setLeaderBoard(leaderboard);
             
-            persist(application);
             persist(leaderboard);
             em.flush();
         }

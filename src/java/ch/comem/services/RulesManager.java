@@ -41,8 +41,6 @@ public class RulesManager implements RulesManagerLocal {
                 rule.setBadge(badge);
                 badge.setRule(rule);
                 
-                persist(application);
-                persist(badge);
                 persist(rule);
                 em.flush();
             }

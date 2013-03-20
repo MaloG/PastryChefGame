@@ -34,34 +34,9 @@ public class LeaderBoard implements Serializable {
     private String name;
     private String description;
     
-    private List<Integer> rankingScore;
-    private List<Long> rankingPlayer;
-    
     @OneToOne(fetch = FetchType.LAZY)
     private Application application;
 
-    public List<Integer> getRankingScore() {
-        return rankingScore;
-    }
-
-    public void setRankingScore(List<Integer> rankingScore) {
-        this.rankingScore = rankingScore;
-    }
-    public void addRankingScore(int score){
-        this.rankingScore.add(score);
-    };
-
-    public List<Long> getRankingPlayer() {
-        return rankingPlayer;
-    }
-
-    public void setRankingPlayer(List<Long> rankingPlayer) {
-        this.rankingPlayer = rankingPlayer;
-    }
-    public void setRankingPlayer(long playerId){
-        this.rankingPlayer.add(playerId);
-    }
-    
     public Long getId() {
         return id;
     }

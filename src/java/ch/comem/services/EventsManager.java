@@ -41,8 +41,6 @@ public class EventsManager implements EventsManagerLocal {
             event.setApplication(application);
             application.addEvent(event);
             
-            persist(player);
-            persist(application);
             persist(event);
             em.flush();
         }
