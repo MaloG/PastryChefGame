@@ -29,7 +29,7 @@ public class Rule implements Serializable {
     private String onEventType;
     private Integer numberOfPoints;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Badge badge;
     
     @ManyToOne(fetch = FetchType.LAZY)

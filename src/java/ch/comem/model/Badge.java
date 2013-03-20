@@ -12,14 +12,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Malo
  */
+
+@NamedQuery(
+        name="findAllBadges",
+        query="SELECT b FROM Badge b"
+)
 @Entity
 @XmlRootElement
 public class Badge implements Serializable {
@@ -36,7 +41,7 @@ public class Badge implements Serializable {
     @ManyToMany(mappedBy = "badges", fetch = FetchType.LAZY)
     private List<Player> players;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Rule rule;
 
     public Rule getRule() {
@@ -47,7 +52,7 @@ public class Badge implements Serializable {
         this.rule = rule;
     }
             
-    @XmlTransient
+
     public List<Player> getPlayers() {
         return players;
     }

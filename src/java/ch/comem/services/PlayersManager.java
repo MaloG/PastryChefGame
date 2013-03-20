@@ -7,6 +7,7 @@ package ch.comem.services;
 import ch.comem.model.Application;
 import ch.comem.model.Badge;
 import ch.comem.model.Player;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -67,6 +68,13 @@ public class PlayersManager implements PlayersManagerLocal {
 
     public void persist(Object object) {
         em.persist(object);
+    }
+
+    @Override
+    public List<Player> findAll() {
+        List<Player> players;
+        players = em.createNamedQuery("findAllPlayers").getResultList();
+        return players;
     }
 
     

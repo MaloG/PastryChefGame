@@ -5,7 +5,7 @@
 package ch.comem.services;
 
 import ch.comem.model.Badge;
-import ch.comem.model.Rule;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -35,6 +35,13 @@ public class BadgesManager implements BadgesManagerLocal {
         em.flush();
             
         return badge.getId();
+    }
+    
+    @Override
+    public List<Badge> findAll() {
+        List<Badge> badges;
+        badges = em.createNamedQuery("findAllBadges").getResultList();
+        return badges;
     }
 
     @Override

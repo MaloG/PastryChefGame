@@ -34,10 +34,10 @@ public class Event implements Serializable {
     private String type;
     private Timestamp timestamp;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Application application;
     
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private Player player;
     
     public Application getApplication() {

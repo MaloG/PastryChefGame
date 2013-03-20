@@ -32,7 +32,7 @@ public class LeaderBoard implements Serializable {
     private List<Integer> rankingScore;
     private List<Long> rankingPlayer;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Application application;
 
     public List<Integer> getRankingScore() {

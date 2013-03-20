@@ -33,7 +33,7 @@ public class Application implements Serializable {
     private String apiKey;
     private String apiSecret;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private LeaderBoard leaderBoard;
     
     @OneToMany(mappedBy = "application", fetch = FetchType.LAZY)
@@ -45,11 +45,10 @@ public class Application implements Serializable {
     @OneToMany(mappedBy = "application", fetch = FetchType.LAZY)
     private List<Rule> rules = new LinkedList<Rule>();
 
-    @XmlTransient
     public List<Rule> getRules() {
         return rules;
     }
-
+    
     public void setRules(List<Rule> rules) {
         this.rules = rules;
     }
@@ -59,7 +58,6 @@ public class Application implements Serializable {
         rule.setApplication(this);
     }
 
-    @XmlTransient
     public List<Player> getPlayers() {
         return players;
     }
@@ -80,7 +78,6 @@ public class Application implements Serializable {
         this.leaderBoard = leaderBoard;
     }
 
-    @XmlTransient
     public List<Event> getEvents() {
         return events;
     }

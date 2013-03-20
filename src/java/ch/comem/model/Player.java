@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -22,6 +23,10 @@ import javax.xml.bind.annotation.XmlTransient;
  *
  * @author Malo
  */
+@NamedQuery(
+        name="findAllPlayers",
+        query="SELECT p FROM Event p"
+)
 @Entity
 @XmlRootElement
 public class Player implements Serializable {
@@ -42,7 +47,7 @@ public class Player implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     private Application application;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private List<Event> event = new LinkedList<Event>();
 
     public Application getApplication() {
@@ -52,7 +57,7 @@ public class Player implements Serializable {
     public void setApplication(Application application) {
         this.application = application;
     }
-    
+
     public List<Event> getEvent() {
         return event;
     }
@@ -64,7 +69,7 @@ public class Player implements Serializable {
     public void addEvent(Event event){
         this.event.add(event);
     }
-    
+
     public List<Badge> getBadges() {
         return badges;
     }

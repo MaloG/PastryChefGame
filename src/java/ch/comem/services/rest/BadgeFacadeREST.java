@@ -5,7 +5,9 @@
 package ch.comem.services.rest;
 
 import ch.comem.model.Badge;
+import ch.comem.services.BadgesManagerLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +27,9 @@ import javax.ws.rs.Produces;
 @Stateless
 @Path("ch.comem.model.badge")
 public class BadgeFacadeREST extends AbstractFacade<Badge> {
+    @EJB
+    private BadgesManagerLocal badgesManager;
+    
     @PersistenceContext(unitName = "Badge")
     private EntityManager em;
 
@@ -63,7 +68,7 @@ public class BadgeFacadeREST extends AbstractFacade<Badge> {
     @Override
     @Produces({"application/xml", "application/json"})
     public List<Badge> findAll() {
-        return super.findAll();
+        return badgesManager.findAll();
     }
 
     @GET
