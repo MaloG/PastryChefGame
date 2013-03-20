@@ -15,6 +15,7 @@ public class PlayerDTO {
     private String email;
     private Integer numberOfPoints;
     private List<Badge> badges;
+    // Pas d'application car c'est l'application qui possède des player et non le contraire
     private List<Event> evenements;
 
     public List<Event> getEvenements() {
