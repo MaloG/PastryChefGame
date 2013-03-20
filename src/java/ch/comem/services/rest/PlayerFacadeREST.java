@@ -121,7 +121,7 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
             playerDTO.setEvents(eventsDTO);
             
             List<BadgeDTO> badgesDTO = new ArrayList<BadgeDTO>();
-            for(int j = 0; j < players.get(i).getBadges().size(); ){
+            for(int j = 0; j < players.get(i).getBadges().size(); j++){
                 BadgeDTO badgeDTO = new BadgeDTO();
                 badgeDTO.setId(players.get(i).getBadges().get(j).getId());
                 badgeDTO.setDescription(players.get(i).getBadges().get(j).getDescription());
