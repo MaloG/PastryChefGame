@@ -5,7 +5,9 @@
 package ch.comem.services.rest;
 
 import ch.comem.model.Rule;
+import ch.comem.services.RulesManagerLocal;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -25,6 +27,10 @@ import javax.ws.rs.Produces;
 @Stateless
 @Path("ch.comem.model.rule")
 public class RuleFacadeREST extends AbstractFacade<Rule> {
+    @EJB
+    private RulesManagerLocal rulesManager;
+    
+    
     @PersistenceContext(unitName = "Badge")
     private EntityManager em;
 
@@ -63,7 +69,7 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
     @Override
     @Produces({"application/xml", "application/json"})
     public List<Rule> findAll() {
-        return super.findAll();
+        return rulesManager.findAll();
     }
 
     @GET

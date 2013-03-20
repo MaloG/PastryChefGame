@@ -4,6 +4,8 @@
  */
 package ch.comem.services;
 
+import ch.comem.model.Rule;
+import java.util.List;
 import javax.ejb.Local;
 
 /**
@@ -14,5 +16,7 @@ import javax.ejb.Local;
 public interface RulesManagerLocal {
 
     long createRule(String onEventType, int numberOfPoints, long badge, long applicationId);
+
+    List<Rule> findAll();
     
 }
