@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -19,10 +20,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Malo
  */
+@NamedQueries({
 @NamedQuery(
         name="findAllEvents",
         query="SELECT e FROM Event e"
+),
+@NamedQuery(
+        name="getPlayerEvents",
+        query="SELECT e FROM Event e WHERE e.application.id = :appId AND e.player.id = :playerId"
 )
+})
 @Entity
 @XmlRootElement
 public class Event implements Serializable {

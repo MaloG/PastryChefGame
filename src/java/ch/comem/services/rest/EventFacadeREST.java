@@ -27,7 +27,7 @@ import javax.ws.rs.Produces;
  * @author raphaelbaumann
  */
 @Stateless
-@Path("ch.comem.model.event")
+@Path("event")
 public class EventFacadeREST extends AbstractFacade<Event> {
     @EJB
     private EventsManagerLocal eventsManager;
@@ -71,7 +71,25 @@ public class EventFacadeREST extends AbstractFacade<Event> {
                 
         return eventDTO;
     }
+    
+    @GET
+    @Path("searchByPlayer/{playerId}/{appId}")
+    @Produces({"application/xml", "application/json"})
+    public List<EventDTO> find(@PathParam("playerId") Long playerId, @PathParam("appId") Long appId) {
+        
+        List<Event> events = eventsManager.getPlayerEvents(appId, playerId);
+        List<EventDTO> eventsDTO = new ArrayList<EventDTO>();
+            for(Event event : events){
+                EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
+                eventsDTO.add(eventDTO);
+            }
 
+        return eventsDTO;
+    }
+    
     @GET
     @Produces({"application/xml", "application/json"})
     public List<EventDTO> findAll() {

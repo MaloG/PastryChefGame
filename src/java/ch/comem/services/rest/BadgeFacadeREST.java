@@ -27,7 +27,7 @@ import javax.ws.rs.Produces;
  * @author raphaelbaumann
  */
 @Stateless
-@Path("ch.comem.model.badge")
+@Path("badge")
 public class BadgeFacadeREST extends AbstractFacade<Badge> {
     @EJB
     private BadgesManagerLocal badgesManager;
@@ -43,7 +43,7 @@ public class BadgeFacadeREST extends AbstractFacade<Badge> {
     @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Badge entity) {
-        super.create(entity);
+        badgesManager.createBadge(entity.getName(), entity.getDescription(), entity.getIcon());
     }
 
     @PUT

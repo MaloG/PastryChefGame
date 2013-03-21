@@ -20,5 +20,7 @@ public interface EventsManagerLocal {
     long createEvent(long playerId, String type, long applicationId);
 
     public List<Event> findAll();
+
+    public List<Event> getPlayerEvents(Long appId, Long playerId);
     
 }

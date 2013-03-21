@@ -32,7 +32,7 @@ import javax.ws.rs.Produces;
  * @author raphaelbaumann
  */
 @Stateless
-@Path("ch.comem.model.player")
+@Path("player")
 public class PlayerFacadeREST extends AbstractFacade<Player> {
     @EJB
     private PlayersManagerLocal playersManager;
@@ -108,7 +108,24 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
          
         return playerDTO;
     }
-
+    
+    @GET
+    @Path("Badges/{playerId}")
+    @Produces({"application/xml", "application/json"})
+    public List<BadgeDTO> findBadges(@PathParam("playerId") Long playerId) {
+        List<Badge> badges = playersManager.getPlayerBadges(playerId);
+        List<BadgeDTO> badgesDTO = new ArrayList<BadgeDTO>();
+        for(Badge badge : badges){
+            BadgeDTO badgeDTO = new BadgeDTO();
+            badgeDTO.setName(badge.getName());
+            badgeDTO.setId(badge.getId());
+            badgeDTO.setDescription(badge.getDescription());
+            badgeDTO.setIcon(badge.getIcon());
+            badgesDTO.add(badgeDTO);
+        }
+        return badgesDTO;
+    }
+    
     @GET
     @Produces({"application/xml", "application/json"})
     public List<PlayerDTO> findAll() {

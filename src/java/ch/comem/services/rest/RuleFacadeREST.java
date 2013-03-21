@@ -27,7 +27,7 @@ import javax.ws.rs.Produces;
  * @author raphaelbaumann
  */
 @Stateless
-@Path("ch.comem.model.rule")
+@Path("rule")
 public class RuleFacadeREST extends AbstractFacade<Rule> {
     @EJB
     private RulesManagerLocal rulesManager;
@@ -44,7 +44,7 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
     @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Rule entity) {
-        super.create(entity);
+        rulesManager.createRule(entity.getOnEventType(), entity.getNumberOfPoints(), entity.getBadge().getId(), entity.getApplication().getId());
     }
 
     @PUT

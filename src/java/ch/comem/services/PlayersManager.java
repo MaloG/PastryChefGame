@@ -74,5 +74,12 @@ public class PlayersManager implements PlayersManagerLocal {
         return players;
     }
 
+    @Override
+    public List<Badge> getPlayerBadges(long playerId) {
+        List<Badge> badges;
+        badges = em.createNamedQuery("findPlayerBadges").setParameter("playerId", playerId).getResultList();
+        return badges;
+    }
+
     
 }

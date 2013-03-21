@@ -4,6 +4,7 @@
  */
 package ch.comem.services;
 
+import ch.comem.model.Badge;
 import ch.comem.model.Player;
 import java.util.List;
 import javax.ejb.Local;
@@ -23,5 +24,7 @@ public interface PlayersManagerLocal {
     public void persist(java.lang.Object object);
 
     List<Player> findAll();
+
+    List<Badge> getPlayerBadges(long playerId);
     
 }

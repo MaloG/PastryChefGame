@@ -56,6 +56,15 @@ public class EventsManager implements EventsManagerLocal {
     public void persist(Object object) {
         em.persist(object);
     }
+
+    @Override
+    public List<Event> getPlayerEvents(Long appId, Long playerId) {
+        List<Event> list;
+        list = em.createNamedQuery("getPlayerEvents").setParameter("appId", appId)
+                                                    .setParameter("playerId", playerId)
+                                                    .getResultList();
+        return list;
+    }
     
     
 

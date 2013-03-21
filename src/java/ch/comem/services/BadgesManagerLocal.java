@@ -14,11 +14,11 @@ import javax.ejb.Local;
  */
 @Local
 public interface BadgesManagerLocal {
-
-    void businessMethod();
     
     long createBadge(String name, String description, String icon);
 
     public List<Badge> findAll();
+
+    List<Badge> findPlayerBadges(long playerId);
     
 }

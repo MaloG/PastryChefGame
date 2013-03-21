@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -22,10 +23,16 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Malo
  */
-@NamedQuery(
-        name="findAllPlayers",
-        query="SELECT p FROM Player p"
-)
+@NamedQueries({
+    @NamedQuery(
+            name="findAllPlayers",
+            query="SELECT p FROM Player p"
+    ),
+    @NamedQuery(
+            name="findPlayerBadges",
+            query="SELECT b FROM Badge b JOIN b.players p WHERE p.id = :playerId"
+    )
+})
 @Entity
 @XmlRootElement
 public class Player implements Serializable {

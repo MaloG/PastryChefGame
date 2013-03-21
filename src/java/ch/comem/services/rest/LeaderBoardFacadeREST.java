@@ -27,7 +27,7 @@ import javax.ws.rs.Produces;
  * @author raphaelbaumann
  */
 @Stateless
-@Path("ch.comem.model.leaderboard")
+@Path("leaderboard")
 public class LeaderBoardFacadeREST extends AbstractFacade<LeaderBoard> {
     @EJB
     private LeaderBoardsManagerLocal leaderBoardsManager;
@@ -43,7 +43,7 @@ public class LeaderBoardFacadeREST extends AbstractFacade<LeaderBoard> {
     @Override
     @Consumes({"application/xml", "application/json"})
     public void create(LeaderBoard entity) {
-        super.create(entity);
+        leaderBoardsManager.createLeaderBoard(entity.getName(), entity.getDescription(), entity.getApplication().getId());
     }
 
     @PUT

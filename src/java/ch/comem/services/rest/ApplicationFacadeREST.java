@@ -33,11 +33,10 @@ import javax.ws.rs.Produces;
  * @author raphaelbaumann
  */
 @Stateless
-@Path("ch.comem.model.application")
+@Path("application")
 public class ApplicationFacadeREST extends AbstractFacade<Application> {
     @EJB
     private ApplicationsManagerLocal applicationsManager;
-    
     
     @PersistenceContext(unitName = "Badge")
     private EntityManager em;
@@ -50,7 +49,7 @@ public class ApplicationFacadeREST extends AbstractFacade<Application> {
     @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Application entity) {
-        super.create(entity);
+        applicationsManager.createApplication(entity.getName(), entity.getDescription(), entity.getApiKey(), entity.getApiSecret());
     }
 
     @PUT

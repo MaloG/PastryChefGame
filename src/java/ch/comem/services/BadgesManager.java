@@ -45,9 +45,10 @@ public class BadgesManager implements BadgesManagerLocal {
     }
 
     @Override
-    public void businessMethod() {
-    
+    public List<Badge> findPlayerBadges(long playerId) {
+        List<Badge> badges;
+        badges = em.createNamedQuery("findPlayerBadges").setParameter("playerId", playerId).getResultList();
+        return badges;
     }
-    
 
 }
