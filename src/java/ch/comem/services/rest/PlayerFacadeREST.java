@@ -12,6 +12,7 @@ import ch.comem.model.Badge;
 import ch.comem.model.Event;
 import ch.comem.model.Player;
 import ch.comem.services.PlayersManagerLocal;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -26,6 +27,9 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.UriBuilder;
 
 /**
  *
@@ -48,8 +52,10 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Player player) {
-        playersManager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getNumberOfPoints(), player.getApplication().getId());
+        playersManager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getApplication().getId());
+        
     }
+
 
     @PUT
     @Override
@@ -110,7 +116,7 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     }
     
     @GET
-    @Path("Badges/{playerId}")
+    @Path("badges/{playerId}")
     @Produces({"application/xml", "application/json"})
     public List<BadgeDTO> findBadges(@PathParam("playerId") Long playerId) {
         List<Badge> badges = playersManager.getPlayerBadges(playerId);
@@ -124,6 +130,18 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
             badgesDTO.add(badgeDTO);
         }
         return badgesDTO;
+    }
+    
+    @GET
+    @Path("points/{playerId}")
+    @Produces({"application/xml", "application/json"})
+    public PlayerDTO findPoints(@PathParam("playerId") Long playerId) {
+        List<Player> players = playersManager.getPlayerPoints(playerId);
+        PlayerDTO playerDTO = new PlayerDTO();
+        for(Player player: players){
+            playerDTO.setNumberOfPoints(player.getNumberOfPoints());
+        }
+        return playerDTO;
     }
     
     @GET

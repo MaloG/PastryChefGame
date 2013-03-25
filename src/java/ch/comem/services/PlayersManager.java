@@ -23,13 +23,13 @@ public class PlayersManager implements PlayersManagerLocal {
 
     
     @Override
-    public long createPlayer(String firstName, String lastName, String email, int numberOfPoints, long applicationId) {
+    public long createPlayer(String firstName, String lastName, String email, long applicationId) {
         Player player = new Player();
         
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setEmail(email);
-        player.setNumberOfPoints(numberOfPoints);
+        
         
         Application application = em.find(Application.class, applicationId);
         
@@ -43,6 +43,7 @@ public class PlayersManager implements PlayersManagerLocal {
         }
         return player.getId();
     }
+    
     
 
     @Override
@@ -81,5 +82,13 @@ public class PlayersManager implements PlayersManagerLocal {
         return badges;
     }
 
+    @Override
+    public List<Player> getPlayerPoints(long playerId) {
+        List<Player> player;
+        player = em.createNamedQuery("findPlayerPoints").setParameter("playerId", playerId).getResultList();
+        return player;
+    }
+
+    
     
 }

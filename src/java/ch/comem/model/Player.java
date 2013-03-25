@@ -29,6 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
             query="SELECT p FROM Player p"
     ),
     @NamedQuery(
+            name="findPlayerPoints",
+            query="SELECT p FROM Player p WHERE p.id = :playerId"
+    ),
+    @NamedQuery(
             name="findPlayerBadges",
             query="SELECT b FROM Badge b JOIN b.players p WHERE p.id = :playerId"
     )
@@ -46,6 +50,8 @@ public class Player implements Serializable {
     private String lastName;
     private String email;
     private Integer numberOfPoints;
+    private Long playerAppId;
+
 
     @ManyToMany(fetch = FetchType.LAZY)
     private List<Badge> badges;
@@ -56,6 +62,14 @@ public class Player implements Serializable {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Event> events = new LinkedList<Event>();
 
+    public Long getPlayerAppId() {
+        return playerAppId;
+    }
+
+    public void setPlayerAppId(Long playerAppId) {
+        this.playerAppId = playerAppId;
+    }
+    
     public Application getApplication() {
         return application;
     }

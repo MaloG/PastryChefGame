@@ -17,7 +17,7 @@ import javax.ejb.Local;
 public interface PlayersManagerLocal {
 
 
-    long createPlayer(String firstName, String lastName, String email, int numberOfPoints, long applicationId);
+    long createPlayer(String firstName, String lastName, String email, long applicationId);
 
     void addBadgeToPlayer(long badgeId, long playerId);
 
@@ -26,5 +26,7 @@ public interface PlayersManagerLocal {
     List<Player> findAll();
 
     List<Badge> getPlayerBadges(long playerId);
+
+    List<Player> getPlayerPoints(long playerId);
     
 }

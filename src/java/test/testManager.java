@@ -79,14 +79,14 @@ public class testManager implements testManagerLocal {
     @Override
     public void createPlayer() {
         for (int index = 0; index < 10; index++) {
-            long x = playersManager.createPlayer(firstNames[index], lastNames[index], ages[index], index, appId[index]);
+            long x = playersManager.createPlayer(firstNames[index], lastNames[index], ages[index], appId[index]);
             System.out.println(x);
         }
     }
     
     public void giveBadgeToPlayer(){
         for (int index = 0; index < 10; index++) {
-            playersManager.addBadgeToPlayer(badgeLing[index], (long) index);
+            playersManager.addBadgeToPlayer(badgeLing[index], 1);
         }
     }
 
@@ -125,6 +125,13 @@ public class testManager implements testManagerLocal {
         giveBadgeToPlayer();
         createEvents();
         createLeaderBoards();
+    }
+
+    @Override
+    public void minSetUp() {
+        createApplication();
+        createBadge();
+        createRules();
     }
 
   

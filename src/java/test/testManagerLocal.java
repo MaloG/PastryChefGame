@@ -26,4 +26,6 @@ public interface testManagerLocal {
     void createRules();
 
     void createLeaderBoards();
+
+    void minSetUp();
 }
