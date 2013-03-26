@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 public class PlayerDTO implements Serializable {
     
-    private Long Id;
+    private Long id;
     private String firstName;
     private String lastName;
     private String email;
@@ -19,6 +19,15 @@ public class PlayerDTO implements Serializable {
     private List<BadgeDTO> badges;
     private List<EventDTO> events;
     private ApplicationDTO application;
+    private Long memberId;
+
+    public Long getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
+    }
 
     public ApplicationDTO getApplication() {
         return application;
@@ -30,11 +39,11 @@ public class PlayerDTO implements Serializable {
 
     
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long Id) {
-        this.Id = Id;
+        this.id = Id;
     }
     
     public List<BadgeDTO> getBadges() {

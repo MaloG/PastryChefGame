@@ -50,7 +50,7 @@ public class Player implements Serializable {
     private String lastName;
     private String email;
     private Integer numberOfPoints;
-    private Long playerAppId;
+    private Long memberId;
 
 
     @ManyToMany(fetch = FetchType.LAZY)
@@ -62,12 +62,12 @@ public class Player implements Serializable {
     @OneToMany(fetch = FetchType.LAZY)
     private List<Event> events = new LinkedList<Event>();
 
-    public Long getPlayerAppId() {
-        return playerAppId;
+    public Long getMemberId() {
+        return memberId;
     }
 
-    public void setPlayerAppId(Long playerAppId) {
-        this.playerAppId = playerAppId;
+    public void setMemberId(Long memberId) {
+        this.memberId = memberId;
     }
     
     public Application getApplication() {

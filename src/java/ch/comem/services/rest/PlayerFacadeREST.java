@@ -12,7 +12,6 @@ import ch.comem.model.Badge;
 import ch.comem.model.Event;
 import ch.comem.model.Player;
 import ch.comem.services.PlayersManagerLocal;
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
@@ -27,9 +26,6 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response;
-import javax.ws.rs.core.UriBuilder;
 
 /**
  *
@@ -52,7 +48,7 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Player player) {
-        playersManager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getApplication().getId());
+        playersManager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getApplication().getId(), player.getMemberId());
         
     }
 
@@ -81,6 +77,7 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
          playerDTO.setFirstName(player.getFirstName());
          playerDTO.setLastName(player.getLastName());
          playerDTO.setEmail(player.getEmail());
+         playerDTO.setMemberId(player.getMemberId());
          
          List<EventDTO> eventsDTO = new ArrayList<EventDTO>();
             for(Event event : player.getEvents()){

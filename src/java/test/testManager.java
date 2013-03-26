@@ -79,7 +79,7 @@ public class testManager implements testManagerLocal {
     @Override
     public void createPlayer() {
         for (int index = 0; index < 10; index++) {
-            long x = playersManager.createPlayer(firstNames[index], lastNames[index], ages[index], appId[index]);
+            long x = playersManager.createPlayer(firstNames[index], lastNames[index], ages[index], appId[index], appId[index]);
             System.out.println(x);
         }
     }
