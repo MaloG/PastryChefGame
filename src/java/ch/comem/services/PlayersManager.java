@@ -29,7 +29,7 @@ public class PlayersManager implements PlayersManagerLocal {
         player.setFirstName(firstName);
         player.setLastName(lastName);
         player.setEmail(email);
-        
+        player.setNumberOfPoints(0);
         
         Application application = em.find(Application.class, applicationId);
         
