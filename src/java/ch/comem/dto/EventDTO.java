@@ -17,7 +17,7 @@ public class EventDTO implements Serializable{
     
     private Long id;
     private String type;
-    private Timestamp timestamp;
+    private long timeInMillis;
     
     // Pas d'application car c'est l'application qui accède à un event et non le contraire
     // Pas de player car c'est un player qui a fait un event et non le contraire
@@ -38,12 +38,12 @@ public class EventDTO implements Serializable{
         this.type = type;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public long getTimeInMillis() {
+        return timeInMillis;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setTimeInMillis(long timestamp) {
+        this.timeInMillis = timestamp;
     }
 
 }

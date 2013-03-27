@@ -48,7 +48,11 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Player player) {
-        playersManager.createPlayer(player.getFirstName(), player.getLastName(), player.getEmail(), player.getApplication().getId(), player.getMemberId());
+        playersManager.createPlayer(player.getFirstName(), 
+                                    player.getLastName(), 
+                                    player.getEmail(), 
+                                    player.getApplication().getId(), 
+                                    player.getMemberId());
         
     }
 
@@ -83,7 +87,7 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
             for(Event event : player.getEvents()){
                 EventDTO eventDTO = new EventDTO();
                 eventDTO.setId(event.getId());
-                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setTimeInMillis(event.getTimeInMillis());
                 eventDTO.setType(event.getType());
                 eventsDTO.add(eventDTO);
             }
@@ -158,7 +162,7 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
             for(Event event : player.getEvents()){
                 EventDTO eventDTO = new EventDTO();
                 eventDTO.setId(event.getId());
-                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setTimeInMillis(event.getTimeInMillis());
                 eventDTO.setType(event.getType());
                 eventsDTO.add(eventDTO);
             }

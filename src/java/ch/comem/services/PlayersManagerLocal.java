@@ -28,5 +28,7 @@ public interface PlayersManagerLocal {
     List<Badge> getPlayerBadges(long playerId);
 
     List<Player> getPlayerPoints(long playerId);
+
+    Long findPlayerIdFromMemberId(Long memberId);
     
 }

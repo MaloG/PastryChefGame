@@ -4,9 +4,7 @@
  */
 package ch.comem.services;
 
-import ch.comem.model.Application;
 import ch.comem.model.Event;
-import ch.comem.model.Player;
 import java.util.List;
 import javax.ejb.Local;
 
@@ -17,7 +15,8 @@ import javax.ejb.Local;
 @Local
 public interface EventsManagerLocal {
 
-    long createEvent(long playerId, String type, long applicationId);
+    long createEvent(Long memberId, long applicationId, String type, 
+                      long timeInMillis);
 
     public List<Event> findAll();
 

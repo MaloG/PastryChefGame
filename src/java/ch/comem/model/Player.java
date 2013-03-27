@@ -28,6 +28,8 @@ import javax.xml.bind.annotation.XmlRootElement;
             name="findAllPlayers",
             query="SELECT p FROM Player p"
     ),
+    @NamedQuery(name="findPlayerIdFromMemberId",
+                query="SELECT p.id FROM Player p WHERE p.memberId = :memberId"),
     @NamedQuery(
             name="findPlayerPoints",
             query="SELECT p FROM Player p WHERE p.id = :playerId"

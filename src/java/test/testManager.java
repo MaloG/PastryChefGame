@@ -10,6 +10,8 @@ import ch.comem.services.EventsManagerLocal;
 import ch.comem.services.LeaderBoardsManagerLocal;
 import ch.comem.services.PlayersManagerLocal;
 import ch.comem.services.RulesManagerLocal;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
@@ -55,7 +57,7 @@ public class testManager implements testManagerLocal {
                                 "xp up","xp up","specific type","xp up","xp up",
                                 "xp up","xp up","specific type","xp up","xp up",
                                 "xp up","xp up","specific type","xp up","xp up"};
-    private int[] playerId = {1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10};
+    private long[] memberId = {1,2,3,4,5,6,7,8,9,10,1,2,3,4,5,6,7,8,9,10};
     private long[] appId = {1,2,1,1,1,1,2,2,1,2,1,2,1,2,1,1,2,1,1,2,2,1,1,2,2,2,1};
     //application
     private String[] appName = {"PastryChef","otherApp"};
@@ -79,7 +81,7 @@ public class testManager implements testManagerLocal {
     @Override
     public void createPlayer() {
         for (int index = 0; index < 10; index++) {
-            long x = playersManager.createPlayer(firstNames[index], lastNames[index], ages[index], appId[index], appId[index]);
+            long x = playersManager.createPlayer(firstNames[index], lastNames[index], ages[index], appId[index], memberId[index]);
             System.out.println(x);
         }
     }
@@ -92,8 +94,9 @@ public class testManager implements testManagerLocal {
 
     @Override
     public void createEvents() {
+        Calendar c = new GregorianCalendar();
         for(int i = 0; i < 20; i++){
-            eventsManager.createEvent(playerId[i], eventType[i], appId[i]);
+            eventsManager.createEvent(memberId[i], appId[i], eventType[i], c.getTimeInMillis());
         }
     }
 
@@ -107,7 +110,7 @@ public class testManager implements testManagerLocal {
     @Override
     public void createRules() {
         for(int i = 0; i < 5; i++){
-            rulesManager.createRule(rules[i], points[i], badge[i], 1);
+            rulesManager.createRule(rules[i], points[i], badge[i], new Long(1));
         }
     }
     
@@ -119,8 +122,6 @@ public class testManager implements testManagerLocal {
     @Override
     public void doAll() {
         createApplication();
-        createBadge();
-        createRules();
         createPlayer();
         giveBadgeToPlayer();
         createEvents();
@@ -130,8 +131,6 @@ public class testManager implements testManagerLocal {
     @Override
     public void minSetUp() {
         createApplication();
-        createBadge();
-        createRules();
     }
 
   

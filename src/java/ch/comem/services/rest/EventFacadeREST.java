@@ -43,7 +43,9 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Event entity) {
-        eventsManager.createEvent(entity.getPlayer().getId(), entity.getType(), entity.getApplication().getId());
+        eventsManager.createEvent(entity.getPlayer().getMemberId(), 
+                                  entity.getApplication().getId(), 
+                                  entity.getType(), entity.getTimeInMillis());
     }
 
     @PUT
@@ -66,7 +68,7 @@ public class EventFacadeREST extends AbstractFacade<Event> {
         Event event = super.find(id);
         EventDTO eventDTO = new EventDTO();
                 eventDTO.setId(event.getId());
-                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setTimeInMillis(event.getTimeInMillis());
                 eventDTO.setType(event.getType());
                 
         return eventDTO;
@@ -82,7 +84,7 @@ public class EventFacadeREST extends AbstractFacade<Event> {
             for(Event event : events){
                 EventDTO eventDTO = new EventDTO();
                 eventDTO.setId(event.getId());
-                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setTimeInMillis(event.getTimeInMillis());
                 eventDTO.setType(event.getType());
                 eventsDTO.add(eventDTO);
             }
@@ -99,7 +101,7 @@ public class EventFacadeREST extends AbstractFacade<Event> {
             for(Event event : events){
                 EventDTO eventDTO = new EventDTO();
                 eventDTO.setId(event.getId());
-                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setTimeInMillis(event.getTimeInMillis());
                 eventDTO.setType(event.getType());
                 eventsDTO.add(eventDTO);
             }

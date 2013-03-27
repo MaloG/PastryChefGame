@@ -90,6 +90,11 @@ public class PlayersManager implements PlayersManagerLocal {
         return player;
     }
 
+    @Override
+    public Long findPlayerIdFromMemberId(Long memberId) {
+        return (Long) em.createNamedQuery("findPlayerIdFromMemberId").setParameter("memberId", memberId).getSingleResult();
+    }
+
     
     
 }

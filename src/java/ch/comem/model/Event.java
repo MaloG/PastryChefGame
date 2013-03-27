@@ -5,7 +5,6 @@
 package ch.comem.model;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -38,7 +37,7 @@ public class Event implements Serializable {
     private Long id;
     
     private String type;
-    private Timestamp timestamp;
+    private long timeInMillis;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Application application;
@@ -70,12 +69,12 @@ public class Event implements Serializable {
         this.type = type;
     }
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public long getTimeInMillis() {
+        return timeInMillis;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setTimeInMillis(long timestamp) {
+        this.timeInMillis = timestamp;
     }
 
     public Long getId() {

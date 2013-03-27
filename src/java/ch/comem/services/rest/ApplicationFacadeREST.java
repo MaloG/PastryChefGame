@@ -82,7 +82,7 @@ public class ApplicationFacadeREST extends AbstractFacade<Application> {
             for(Event event : application.getEvents()){
                 EventDTO eventDTO = new EventDTO();
                 eventDTO.setId(event.getId());
-                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setTimeInMillis(event.getTimeInMillis());
                 eventDTO.setType(event.getType());
                 eventsDTO.add(eventDTO);
             }
@@ -129,7 +129,7 @@ public class ApplicationFacadeREST extends AbstractFacade<Application> {
             for(Event event : application.getEvents()){
                 EventDTO eventDTO = new EventDTO();
                 eventDTO.setId(event.getId());
-                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setTimeInMillis(event.getTimeInMillis());
                 eventDTO.setType(event.getType());
                 eventsDTO.add(eventDTO);
             }

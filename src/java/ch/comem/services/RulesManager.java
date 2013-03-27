@@ -23,27 +23,28 @@ public class RulesManager implements RulesManagerLocal {
     
     
         @Override
-        public long createRule(String onEventType, int numberOfPoints, long badgeId, long applicationId) {
+        public long createRule(String onEventType, int numberOfPoints, Long badgeId, 
+                                Long applicationId) {
             Rule rule = new Rule();
             
             rule.setOnEventType(onEventType);
             rule.setNumberOfPoints(numberOfPoints);
             
             Application application = em.find(Application.class, applicationId);
-            Badge badge;
-            badge = em.find(Badge.class, badgeId);
+            Badge badge = null;
+            if (badgeId != null)
+                badge = em.find(Badge.class, badgeId);
             
-            if(application != null && badge != null){
-                
+            if(application != null) {
                 rule.setApplication(application);
                 application.addRule(rule);
-                
+            }
+            if(badge != null) {
                 rule.setBadge(badge);
                 badge.setRule(rule);
-                
-                persist(rule);
-                em.flush();
-            }
+            }                
+            persist(rule);
+            em.flush();
             return rule.getId();
 
         }
