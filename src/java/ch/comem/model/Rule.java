@@ -20,14 +20,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author Malo
  */
-@NamedQueries({
+
 @NamedQuery(
     name="findAllRules",
     query="SELECT r FROM Rule r"
-),
-@NamedQuery(
-        name = "findOnEventType",
-        query="SELECT r.badge, r.numberOfPoints FROM Rule r JOIN r.onEventType WHERE r.onEventType.type = :type")})
+)
 @Entity
 @XmlRootElement
 public class Rule implements Serializable {
