@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
@@ -39,6 +41,9 @@ public class Badge implements Serializable {
     private String icon;
     
     @ManyToMany(mappedBy = "badges", fetch = FetchType.LAZY)
+    @JoinTable(name="player_badge",
+               joinColumns=@JoinColumn(name="badges_ID"),
+               inverseJoinColumns=@JoinColumn(name="players_ID"))
     private List<Player> players;
     
     @OneToOne(fetch = FetchType.LAZY)

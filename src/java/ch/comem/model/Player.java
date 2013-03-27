@@ -12,6 +12,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
@@ -56,12 +58,18 @@ public class Player implements Serializable {
 
 
     @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="player_badge",
+               joinColumns=@JoinColumn(name="players_ID"),
+               inverseJoinColumns=@JoinColumn(name="badges_ID"))
     private List<Badge> badges;
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Application application;
 
     @OneToMany(fetch = FetchType.LAZY)
+    @JoinTable(name="player_event",
+               joinColumns=@JoinColumn(name="Player_ID"),
+               inverseJoinColumns=@JoinColumn(name="events_ID"))
     private List<Event> events = new LinkedList<Event>();
 
     public Long getMemberId() {
@@ -133,7 +141,7 @@ public class Player implements Serializable {
     }
 
     public void setNumberOfPoints(Integer numberOfPoints) {
-        this.numberOfPoints = numberOfPoints;
+        this.numberOfPoints += numberOfPoints;
     }
 
     public Long getId() {

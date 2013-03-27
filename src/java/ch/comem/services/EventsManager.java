@@ -112,8 +112,10 @@ public class EventsManager implements EventsManagerLocal {
                     if (!updated) {
                         if (r.getOnEventType().equals("Expérience acquise") && 
                             r.getNumberOfPoints() == 0) {
-                            p.addBadges(r.getBadge());
-                            updated = true;
+                            if (bList.isEmpty()) {
+                                p.addBadges(r.getBadge());
+                                updated = true;
+                            }
                         }
                     }
                 }
@@ -158,7 +160,7 @@ public class EventsManager implements EventsManagerLocal {
                     }
                 }
             }
-                        
+     
             persist(event);
             em.flush();
 
