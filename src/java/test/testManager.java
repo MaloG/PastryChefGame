@@ -107,7 +107,7 @@ public class testManager implements testManagerLocal {
     @Override
     public void createRules() {
         for(int i = 0; i < 5; i++){
-            rulesManager.createRule(rules[i], points[i], badge[i], 1);
+            rulesManager.createRule(badge[i], points[i], badge[i], 1);
         }
     }
     

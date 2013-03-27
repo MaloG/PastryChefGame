@@ -102,8 +102,15 @@ public class ApplicationFacadeREST extends AbstractFacade<Application> {
             for(Rule rule : application.getRules()){
                 RuleDTO ruleDTO = new RuleDTO();
                 ruleDTO.setId(rule.getId());
-                ruleDTO.setOnEventType(rule.getOnEventType());
                 ruleDTO.setNumberOfPoints(rule.getNumberOfPoints());
+                
+                Event event = rule.getOnEventType();
+                EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
+                ruleDTO.setOnEventType(eventDTO);
+                
                 rulesDTO.add(ruleDTO);
             }
             applicationDTO.setRules(rulesDTO);
@@ -149,8 +156,15 @@ public class ApplicationFacadeREST extends AbstractFacade<Application> {
             for(Rule rule : application.getRules()){
                 RuleDTO ruleDTO = new RuleDTO();
                 ruleDTO.setId(rule.getId());
-                ruleDTO.setOnEventType(rule.getOnEventType());
                 ruleDTO.setNumberOfPoints(rule.getNumberOfPoints());
+                
+                Event event = rule.getOnEventType();
+                EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
+                ruleDTO.setOnEventType(eventDTO);
+                
                 rulesDTO.add(ruleDTO);
             }
             applicationDTO.setRules(rulesDTO);

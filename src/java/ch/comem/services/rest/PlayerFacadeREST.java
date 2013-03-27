@@ -101,7 +101,13 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
                 
                 ruleDTO.setId(badge.getRule().getId());
                 ruleDTO.setNumberOfPoints(badge.getRule().getNumberOfPoints());
-                ruleDTO.setOnEventType(badge.getRule().getOnEventType());
+                
+                Event event = badge.getRule().getOnEventType();
+                EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
+                ruleDTO.setOnEventType(eventDTO);
                 
                 badgeDTO.setRule(ruleDTO);
                 
@@ -176,7 +182,13 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
                 
                 ruleDTO.setId(badge.getRule().getId());
                 ruleDTO.setNumberOfPoints(badge.getRule().getNumberOfPoints());
-                ruleDTO.setOnEventType(badge.getRule().getOnEventType());
+                
+                Event event = badge.getRule().getOnEventType();
+                EventDTO eventDTO = new EventDTO();
+                eventDTO.setId(event.getId());
+                eventDTO.setTimestamp(event.getTimestamp());
+                eventDTO.setType(event.getType());
+                ruleDTO.setOnEventType(eventDTO);
                 
                 badgeDTO.setRule(ruleDTO);
                 

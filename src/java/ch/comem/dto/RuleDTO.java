@@ -11,7 +11,7 @@ package ch.comem.dto;
 public class RuleDTO {
     
     private Long id;
-    private String onEventType;
+    private EventDTO onEventType;
     private Integer numberOfPoints;
     
     // Pas de bage car c'est un bage qui accède à une régle et non le contraire
@@ -25,11 +25,11 @@ public class RuleDTO {
         this.id = id;
     }
 
-    public String getOnEventType() {
+    public EventDTO getOnEventType() {
         return onEventType;
     }
 
-    public void setOnEventType(String onEventType) {
+    public void setOnEventType(EventDTO onEventType) {
         this.onEventType = onEventType;
     }
 
