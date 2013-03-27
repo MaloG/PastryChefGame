@@ -4,9 +4,7 @@
  */
 package ch.comem.services.rest;
 
-import ch.comem.dto.EventDTO;
 import ch.comem.dto.RuleDTO;
-import ch.comem.model.Event;
 import ch.comem.model.Rule;
 import ch.comem.services.RulesManagerLocal;
 import java.util.ArrayList;
@@ -46,7 +44,7 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
     @Override
     @Consumes({"application/xml", "application/json"})
     public void create(Rule entity) {
-        rulesManager.createRule(entity.getOnEventType().getId(), entity.getNumberOfPoints(), entity.getBadge().getId(), entity.getApplication().getId());
+        rulesManager.createRule(entity.getOnEventType(), entity.getNumberOfPoints(), entity.getBadge().getId(), entity.getApplication().getId());
     }
 
     @PUT
@@ -71,14 +69,7 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
         Rule rule = super.find(id);
         ruleDTO.setId(rule.getId());
         ruleDTO.setNumberOfPoints(rule.getNumberOfPoints());
-        
-        Event event = rule.getOnEventType();
-        EventDTO eventDTO = new EventDTO();
-        eventDTO.setId(event.getId());
-        eventDTO.setTimestamp(event.getTimestamp());
-        eventDTO.setType(event.getType());
-        ruleDTO.setOnEventType(eventDTO);
-       
+        ruleDTO.setOnEventType(rule.getOnEventType());
 
         return ruleDTO;
     }
@@ -92,14 +83,8 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
         for(Rule rule : rules){
             RuleDTO ruleDTO = new RuleDTO();
             ruleDTO.setId(rule.getId());
+            ruleDTO.setOnEventType(rule.getOnEventType());
             ruleDTO.setNumberOfPoints(rule.getNumberOfPoints());
-            
-            Event event = rule.getOnEventType();
-            EventDTO eventDTO = new EventDTO();
-            eventDTO.setId(event.getId());
-            eventDTO.setTimestamp(event.getTimestamp());
-            eventDTO.setType(event.getType());
-            ruleDTO.setOnEventType(eventDTO);
    
             results.add(ruleDTO);
         }     

@@ -11,7 +11,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,6 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     name="findAllRules",
     query="SELECT r FROM Rule r"
 )
+
 @Entity
 @XmlRootElement
 public class Rule implements Serializable {
@@ -33,8 +33,7 @@ public class Rule implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    private Event onEventType;
+    private String onEventType;
     private Integer numberOfPoints;
     
     @OneToOne(fetch = FetchType.LAZY)
@@ -51,11 +50,11 @@ public class Rule implements Serializable {
         this.badge = badge;
     }
 
-    public Event getOnEventType() {
+    public String getOnEventType() {
         return onEventType;
     }
 
-    public void setOnEventType(Event onEventType) {
+    public void setOnEventType(String onEventType) {
         this.onEventType = onEventType;
     }
 

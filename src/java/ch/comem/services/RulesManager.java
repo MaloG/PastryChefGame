@@ -6,7 +6,6 @@ package ch.comem.services;
 
 import ch.comem.model.Application;
 import ch.comem.model.Badge;
-import ch.comem.model.Event;
 import ch.comem.model.Rule;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -24,14 +23,10 @@ public class RulesManager implements RulesManagerLocal {
     
     
         @Override
-        public long createRule(Long eventId, int numberOfPoints, long badgeId, long applicationId) {
+        public long createRule(String onEventType, int numberOfPoints, long badgeId, long applicationId) {
             Rule rule = new Rule();
             
-            Event event = em.find(Event.class, eventId);
-            if(event != null){
-                
-            }
-            //rule.setOnEventType(onEventType);
+            rule.setOnEventType(onEventType);
             rule.setNumberOfPoints(numberOfPoints);
             
             Application application = em.find(Application.class, applicationId);

@@ -15,7 +15,7 @@ import javax.ejb.Local;
 @Local
 public interface RulesManagerLocal {
 
-    long createRule(Long eventId, int numberOfPoints, long badge, long applicationId);
+    long createRule(String onEventType, int numberOfPoints, long badge, long applicationId);
 
     List<Rule> findAll();
     
