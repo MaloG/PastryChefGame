@@ -53,7 +53,7 @@ public class Player implements Serializable {
     private String firstName;
     private String lastName;
     private String email;
-    private Integer numberOfPoints;
+    private Integer numberOfPoints = new Integer(0);
     private Long memberId;
 
 

@@ -127,6 +127,7 @@ public class EventsManager implements EventsManagerLocal {
     public long createEvent(Long memberId, long applicationId, String type, 
                               long timeInMillis) {
         Event event = new Event();
+        Long id = null;
         Long playerId = pm.findPlayerIdFromMemberId(memberId);
         Player player = em.find(Player.class, playerId);
         Application application = em.find(Application.class, applicationId);
@@ -149,10 +150,12 @@ public class EventsManager implements EventsManagerLocal {
             boolean validEvent = false;
             for (Rule r : rList) {
                 if (!validEvent) {
-                    if (r.getOnEventType().equals(type)) {
-                        Badge b = r.getBadge();
-                        if (b != null)
-                            player.addBadges(b);
+                    if (r.getOnEventType().equals(type)) { 
+                        if (!type.equals("Création de compte")) {
+                            Badge b = r.getBadge();
+                            if (b != null)
+                                player.addBadges(b);
+                        }
                         Integer points = r.getNumberOfPoints();
                         if (points != null)
                             player.setNumberOfPoints(points);
@@ -168,9 +171,9 @@ public class EventsManager implements EventsManagerLocal {
             updateExperienceBadge(player, application, flag);
             
             em.flush();
-
+            id = event.getId();
         }
-        return event.getId();
+        return id;
     }
     @Override
     public List<Event> findAll(){

@@ -39,9 +39,9 @@ public class PlayersManager implements PlayersManagerLocal {
             player.setApplication(application);
             application.addPlayers(player);
             
-            persist(player);
-            em.flush();
         }
+        persist(player);
+        em.flush();
         return player.getId();
     }
     

@@ -10,8 +10,6 @@ import ch.comem.services.EventsManagerLocal;
 import ch.comem.services.LeaderBoardsManagerLocal;
 import ch.comem.services.PlayersManagerLocal;
 import ch.comem.services.RulesManagerLocal;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.jws.WebService;
