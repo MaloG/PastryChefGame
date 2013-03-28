@@ -13,13 +13,9 @@ import javax.ejb.Local;
 @Local
 public interface testManagerLocal {
 
-    void createPlayer();
-
+    /** Method to be overridden which enable the creation of the 
+     * PastryChefGamification application.
+     * 
+     */
     void createApplication();
-
-    void doAll();
-
-    void createLeaderBoards();
-
-    void minSetUp();
 }
