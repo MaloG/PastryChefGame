@@ -146,6 +146,19 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     }
     
     @GET
+    @Path("memberPoints/{playerId}")
+    @Produces({"application/xml", "application/json"})
+    public PlayerDTO findMemberPoints(@PathParam("playerId") Long playerId) {
+        long memberId = playersManager.findPlayerIdFromMemberId(playerId);
+        List<Player> players = playersManager.getPlayerPoints(memberId);
+        PlayerDTO playerDTO = new PlayerDTO();
+        for(Player player: players){
+            playerDTO.setNumberOfPoints(player.getNumberOfPoints());
+        }
+        return playerDTO;
+    }
+    
+    @GET
     @Produces({"application/xml", "application/json"})
     public List<PlayerDTO> findAll() {
          List<PlayerDTO> results = new ArrayList<PlayerDTO>();
