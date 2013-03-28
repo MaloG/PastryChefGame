@@ -18,7 +18,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class RulesManager implements RulesManagerLocal {
-    @PersistenceContext(unitName = "Badge")
+    @PersistenceContext(unitName = "PastryChefGame")
     private EntityManager em;
     
     

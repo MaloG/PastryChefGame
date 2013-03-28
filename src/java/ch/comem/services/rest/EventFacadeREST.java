@@ -32,7 +32,7 @@ public class EventFacadeREST extends AbstractFacade<Event> {
     @EJB
     private EventsManagerLocal eventsManager;
     
-    @PersistenceContext(unitName = "Badge")
+    @PersistenceContext(unitName = "PastryChefGame")
     private EntityManager em;
     
     public EventFacadeREST() {

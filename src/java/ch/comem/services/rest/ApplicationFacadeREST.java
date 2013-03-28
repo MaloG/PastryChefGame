@@ -38,7 +38,7 @@ public class ApplicationFacadeREST extends AbstractFacade<Application> {
     @EJB
     private ApplicationsManagerLocal applicationsManager;
     
-    @PersistenceContext(unitName = "Badge")
+    @PersistenceContext(unitName = "PastryChefGame")
     private EntityManager em;
 
     public ApplicationFacadeREST() {

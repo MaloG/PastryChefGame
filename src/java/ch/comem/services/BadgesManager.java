@@ -16,7 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class BadgesManager implements BadgesManagerLocal {
-    @PersistenceContext(unitName = "Badge")
+    @PersistenceContext(unitName = "PastryChefGame")
     private EntityManager em;
 
     public void persist(Object object) {

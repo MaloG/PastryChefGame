@@ -32,7 +32,7 @@ public class LeaderBoardFacadeREST extends AbstractFacade<LeaderBoard> {
     @EJB
     private LeaderBoardsManagerLocal leaderBoardsManager;
     
-    @PersistenceContext(unitName = "Badge")
+    @PersistenceContext(unitName = "PastryChefGame")
     private EntityManager em;
 
     public LeaderBoardFacadeREST() {

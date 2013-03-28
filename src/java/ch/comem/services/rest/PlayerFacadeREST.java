@@ -37,7 +37,7 @@ public class PlayerFacadeREST extends AbstractFacade<Player> {
     @EJB
     private PlayersManagerLocal playersManager;
     
-    @PersistenceContext(unitName = "Badge")
+    @PersistenceContext(unitName = "PastryChefGame")
     private EntityManager em;
 
     public PlayerFacadeREST() {

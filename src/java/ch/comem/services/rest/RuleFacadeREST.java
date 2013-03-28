@@ -33,7 +33,7 @@ public class RuleFacadeREST extends AbstractFacade<Rule> {
     private RulesManagerLocal rulesManager;
     
     
-    @PersistenceContext(unitName = "Badge")
+    @PersistenceContext(unitName = "PastryChefGame")
     private EntityManager em;
 
     public RuleFacadeREST() {

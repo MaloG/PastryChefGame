@@ -32,7 +32,7 @@ public class BadgeFacadeREST extends AbstractFacade<Badge> {
     @EJB
     private BadgesManagerLocal badgesManager;
     
-    @PersistenceContext(unitName = "Badge")
+    @PersistenceContext(unitName = "PastryChefGame")
     private EntityManager em;
 
     public BadgeFacadeREST() {

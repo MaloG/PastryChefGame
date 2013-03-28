@@ -17,7 +17,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ApplicationsManager implements ApplicationsManagerLocal {
-    @PersistenceContext(unitName = "Badge")
+    @PersistenceContext(unitName = "PastryChefGame")
     private EntityManager em;
     @EJB
     private BadgesManagerLocal bm;

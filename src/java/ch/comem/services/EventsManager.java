@@ -23,7 +23,7 @@ import javax.persistence.PersistenceContext;
 public class EventsManager implements EventsManagerLocal {
     @EJB
     private PlayersManagerLocal pm;
-    @PersistenceContext(unitName = "Badge")
+    @PersistenceContext(unitName = "PastryChefGame")
     private EntityManager em;
     
     private int defineExperienceLevel(Player p) {
@@ -52,8 +52,7 @@ public class EventsManager implements EventsManagerLocal {
                     if (!updated) {
                         if (r.getOnEventType().equals("Expérience acquise") && 
                             r.getNumberOfPoints() == 2000) {
-                            bList.remove(0);
-                            bList.add(0, r.getBadge());
+                            bList.add(r.getBadge());
                             updated = true;
                         }
                     }
@@ -64,8 +63,7 @@ public class EventsManager implements EventsManagerLocal {
                     if (!updated) {
                         if (r.getOnEventType().equals("Expérience acquise") && 
                             r.getNumberOfPoints() == 1400) {
-                            bList.remove(0);
-                            bList.add(0, r.getBadge());
+                            bList.add(r.getBadge());
                             updated = true;
                         }
                     }
@@ -76,8 +74,7 @@ public class EventsManager implements EventsManagerLocal {
                     if (!updated) {
                         if (r.getOnEventType().equals("Expérience acquise") && 
                             r.getNumberOfPoints() == 900) {
-                            bList.remove(0);
-                            bList.add(0, r.getBadge());
+                            bList.add(r.getBadge());
                             updated = true;
                         }
                     }
@@ -88,8 +85,7 @@ public class EventsManager implements EventsManagerLocal {
                     if (!updated) {
                         if (r.getOnEventType().equals("Expérience acquise") && 
                             r.getNumberOfPoints() == 500) {
-                            bList.remove(0);
-                            bList.add(0, r.getBadge());
+                            bList.add(r.getBadge());
                             updated = true;
                         }
                     }
@@ -100,8 +96,7 @@ public class EventsManager implements EventsManagerLocal {
                     if (!updated) {
                         if (r.getOnEventType().equals("Expérience acquise") && 
                             r.getNumberOfPoints() == 200) {
-                            bList.remove(0);
-                            bList.add(0, r.getBadge());
+                            bList.add(r.getBadge());
                             updated = true;
                         }
                     }
@@ -155,8 +150,28 @@ public class EventsManager implements EventsManagerLocal {
             em.flush();
 
             int flag2 = defineExperienceLevel(player);
-            if (flag > flag2)
+            if (flag > flag2) {
                 updateExperienceBadge(player, application, flag2);
+                Badge b = null;
+                switch(flag2) {
+                    case 1:
+                        b = em.find(Badge.class, 5L);
+                        break;
+                    case 2:
+                        b = em.find(Badge.class, 4L);
+                        break;
+                    case 3:
+                        b = em.find(Badge.class, 3L);
+                        break;
+                    case 4:
+                        b = em.find(Badge.class, 2L);
+                        break;
+                    case 5:
+                        b = em.find(Badge.class, 1L);
+                        break;
+                }
+                player.getBadges().remove(b);
+            }
             
             em.flush();
             id = event.getId();
