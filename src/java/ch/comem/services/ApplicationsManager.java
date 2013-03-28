@@ -36,28 +36,28 @@ public class ApplicationsManager implements ApplicationsManagerLocal {
         
         Long badge1Id = bm.createBadge("Newbie", 
                                        "Vous recevez ce badge automatiquement", 
-                                       "badge newbie");
+                                       "badge_newbie");
         Long badge2Id = bm.createBadge("Amateur",
                                        "200 points atteints", 
-                                       "badge amateur");
+                                       "badge_amateur");
         Long badge3Id = bm.createBadge("Pâtissier du dimanche", 
                                        "500 points atteints",
-                                       "badge pâtissier du dimanche");
+                                       "badge_pat_dim");
         Long badge4Id = bm.createBadge("Apprenti-pâtissier", 
                                        "900 points atteints", 
-                                       "badge apprenti-pâtissier");
+                                       "badege_app_pat");
         Long badge5Id = bm.createBadge("Pâtissier", 
                                        "1400 points atteints", 
-                                       "badge pâtissier");
+                                       "badge_pat");
         Long badge6Id = bm.createBadge("Chef pâtissier", 
                                        "2000 points atteints", 
-                                       "badge chef pâtissier");
+                                       "badge_chef_pat");
         Long badge7Id = bm.createBadge("Gâteaux", 
                                        "Vous recevez ce badge pour avoir publié au moins une recette dans la catégorie Gâteaux", 
-                                       "badge gâteaux");
+                                       "badge_gateaux");
         Long badge8Id = bm.createBadge("Cupcakes", 
                                        "Vous recevez ce badge pour avoir publié au moins une recette dans la catégorie Cupcakes", 
-                                       "badge cupcakes");
+                                       "badge_cupcakes");
         
         rm.createRule("Expérience acquise", 0, null, application.getId());
         rm.createRule("Expérience acquise", 200, badge2Id, application.getId());
