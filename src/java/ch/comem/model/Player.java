@@ -61,7 +61,7 @@ public class Player implements Serializable {
     @JoinTable(name="player_badge",
                joinColumns=@JoinColumn(name="players_ID"),
                inverseJoinColumns=@JoinColumn(name="badges_ID"))
-    private List<Badge> badges;
+    private List<Badge> badges = new LinkedList<Badge>();
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Application application;

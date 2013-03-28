@@ -107,19 +107,6 @@ public class EventsManager implements EventsManagerLocal {
                     }
                 }
                 break;
-            case 6:
-                for (Rule r : rList) {
-                    if (!updated) {
-                        if (r.getOnEventType().equals("Expérience acquise") && 
-                            r.getNumberOfPoints() == 0) {
-                            if (bList.isEmpty()) {
-                                p.addBadges(r.getBadge());
-                                updated = true;
-                            }
-                        }
-                    }
-                }
-                break;
         }
     }
     
@@ -135,7 +122,6 @@ public class EventsManager implements EventsManagerLocal {
         if(player != null && application != null){
         
             int flag = defineExperienceLevel(player);
-            updateExperienceBadge(player, application, flag);
 
             event.setType(type);
             event.setTimeInMillis(timeInMillis);
@@ -151,13 +137,14 @@ public class EventsManager implements EventsManagerLocal {
             for (Rule r : rList) {
                 if (!validEvent) {
                     if (r.getOnEventType().equals(type)) { 
-                        if (!type.equals("Création de compte")) {
-                            Badge b = r.getBadge();
-                            if (b != null)
-                                player.addBadges(b);
-                        }
                         Integer points = r.getNumberOfPoints();
-                        if (points != null)
+                        Badge b = r.getBadge();
+                        if (b != null) {
+                            if(!player.getBadges().contains(b)) {
+                                player.addBadges(b);
+                                player.setNumberOfPoints(points);
+                            }
+                        } else
                             player.setNumberOfPoints(points);
                         validEvent = true;
                     }
@@ -167,8 +154,9 @@ public class EventsManager implements EventsManagerLocal {
             persist(event);
             em.flush();
 
-            flag = defineExperienceLevel(player);
-            updateExperienceBadge(player, application, flag);
+            int flag2 = defineExperienceLevel(player);
+            if (flag > flag2)
+                updateExperienceBadge(player, application, flag2);
             
             em.flush();
             id = event.getId();

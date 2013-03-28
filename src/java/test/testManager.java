@@ -47,10 +47,10 @@ public class testManager implements testManagerLocal {
     private long[] memberId = {1,2,3,4,5,6,7,8,9,10};
     private long[] appId = {1,1,1,1,1,1,1,1,1,1};
     //application
-    private String[] appName = {"PastryChef","otherApp"};
-    private String[] apiKey = {"12431423","324423512"};
-    private String[] apiSecret = {"987654","12765432"};
-    private String[] appDesc = {"pastry sharing application", "other useless application you'll never use","something else"};
+    private String appName = "PastryChef";
+    private String apiKey = "12431423";
+    private String apiSecret = "987654";
+    private String appDesc = "pastry sharing application";
     
 
     @Override
@@ -63,9 +63,7 @@ public class testManager implements testManagerLocal {
 
     @Override
     public void createApplication() {
-        for(int i = 0; i < 2; i++){
-            applicationsManager.createApplication(appName[i], appDesc[i], apiKey[i], apiSecret[i]);
-        }
+        applicationsManager.createApplication(appName, appDesc, apiKey, apiSecret);
     }
     
     @Override

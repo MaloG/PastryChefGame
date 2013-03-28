@@ -22,35 +22,34 @@ public class RulesManager implements RulesManagerLocal {
     private EntityManager em;
     
     
-        @Override
-        public long createRule(String onEventType, int numberOfPoints, Long badgeId, 
-                                Long applicationId) {
-            Rule rule = new Rule();
-            
-            rule.setOnEventType(onEventType);
-            rule.setNumberOfPoints(numberOfPoints);
-            
-            Application application = em.find(Application.class, applicationId);
-            Badge badge = null;
-            if (badgeId != null)
-                badge = em.find(Badge.class, badgeId);
-            
-            if(application != null) {
-                rule.setApplication(application);
-                application.addRule(rule);
-            }
-            if(badge != null) {
-                rule.setBadge(badge);
-                badge.setRule(rule);
-            }                
-            persist(rule);
-            em.flush();
-            return rule.getId();
+    @Override
+    public long createRule(String onEventType, int numberOfPoints, Long badgeId, 
+                            Long applicationId) {
+        Rule rule = new Rule();
 
+        rule.setOnEventType(onEventType);
+        rule.setNumberOfPoints(numberOfPoints);
+
+        Application application = em.find(Application.class, applicationId);
+        Badge badge = null;
+        if (badgeId != null)
+            badge = em.find(Badge.class, badgeId);
+        if(application != null) {
+            rule.setApplication(application);
+            application.addRule(rule);
         }
-        public void persist(Object object) {
-            em.persist(object);
-        }
+        if(badge != null) {
+            rule.setBadge(badge);
+            badge.setRule(rule);
+        }                
+        
+        persist(rule);
+        em.flush();
+        
+        return rule.getId();
+
+    }
+        
 
     @Override
     public List<Rule> findAll() {
@@ -59,4 +58,7 @@ public class RulesManager implements RulesManagerLocal {
         return list;
     }
         
+    public void persist(Object object) {
+        em.persist(object);
+    }
 }
