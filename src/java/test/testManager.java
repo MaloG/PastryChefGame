@@ -34,18 +34,6 @@ public class testManager implements testManagerLocal {
     @EJB
     private BadgesManagerLocal badgesManager;
     
-    //Player
-    private String[] firstNames = {"Paul", "Arthur", "Danielle", "Georges",
-                                   "Isabelle", "Chuck", "Mario", "Joëlle",
-                                   "Léa", "Walter"};
-    private String[] lastNames = {"Hogan", "Lion", "Müller", "Pasche",
-                                  "Adjani", "Norris", "Kart", "Wyss",
-                                  "Teoni", "Baertchi"};
-    private String[] ages = {"fsdf", "fsdf", "fsdf", "fsdf", "fsdf", "fsdf",
-                             "fsdf", "fsdf", "fsdf", "fsdf"};
-    
-    private long[] memberId = {1,2,3,4,5,6,7,8,9,10};
-    private long[] appId = {1,1,1,1,1,1,1,1,1,1};
     //application
     private String appName = "PastryChef";
     private String apiKey = "12431423";
@@ -53,36 +41,14 @@ public class testManager implements testManagerLocal {
     private String appDesc = "pastry sharing application";
     
 
-    @Override
-    public void createPlayer() {
-        for (int index = 0; index < 10; index++) {
-            long x = playersManager.createPlayer(firstNames[index], lastNames[index], ages[index], appId[index], memberId[index]);
-            System.out.println(x);
-        }
-    }
-
+    /** Method which enable the creation of the PastryChefGamification 
+     * application. This method also create a set of rules and badges involved 
+     * in this application.
+     * 
+     */
     @Override
     public void createApplication() {
         applicationsManager.createApplication(appName, appDesc, apiKey, apiSecret);
     }
     
-    @Override
-    public void createLeaderBoards() {
-        leaderBoardsManager.createLeaderBoard("stuff", "long stuff", 1);
-    }
-
-    @Override
-    public void doAll() {
-        createApplication();
-        createPlayer();
-        createLeaderBoards();
-    }
-
-    @Override
-    public void minSetUp() {
-        createApplication();
-    }
-
-  
-
 }
